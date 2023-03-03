@@ -27,6 +27,12 @@ The robot uses a Virtual Force Field (VFF) algorithm to navigate. The VFF algori
 
 The robot is simulated (I used gazebo). It provides lidar readings by publishing sensor_msgs::msg::LaserScan messages, and accepts motion control commands by listening for geometry_msgs::msg::Twist messages.
 
+## To build
+
+colcon build --symlink-install
+
+## To run
+
 One way to run the robot in the Gazebo simulator:
 
 * In one window: ./scripts/start.sh
