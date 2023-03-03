@@ -46,19 +46,19 @@ private:
       return;
     }
 
-    RCLCPP_INFO(logger_, "State: %s", cur_state_handler_->name());
+    RCLCPP_INFO(logger_, "State: %s", cur_state_handler_->getName());
     double current_time = now().seconds();
     init_laser_characteristics();
-    LaserAnalysis laser_analysis =
+    VectorByMagnitudeAngle vector_to_obstacle =
       laser_analyzer_.analyze(*laser_characteristics_, last_laser_scan_msg_->ranges);
 
     Action action = cur_state_handler_->act(
-      current_time - time_entered_state_seconds_, *laser_characteristics_, laser_analysis);
+      current_time - time_entered_state_seconds_, *laser_characteristics_, vector_to_obstacle);
 
     if (action.get_state() != cur_state_handler_->getState()) {
       time_entered_state_seconds_ = current_time;
+      cur_state_handler_ = state_handlers_.get_state_handler(action.get_state());
     }
-    cur_state_handler_ = state_handlers_.get_state_handler(action.get_state());
 
     std::optional<Velocity> new_velocity = action.get_velocity();
     if (new_velocity.has_value()) {

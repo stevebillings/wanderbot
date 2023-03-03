@@ -24,26 +24,22 @@ LaserCharacteristics LaserAnalyzer::determineCharacteristics(
     laser_angle_min, laser_angle_increment, leftmost_index, straight_index);
 }
 
-LaserAnalysis LaserAnalyzer::analyze(
+VectorByMagnitudeAngle LaserAnalyzer::analyze(
   const LaserCharacteristics & laserCharacteristics, const std::vector<float> & laser_ranges) const
 {
   int cur_range_index = 0;
-  double min_range = 1000.0;
-  uint32_t min_range_index = laserCharacteristics.getStraightIndex();
+  double obstacle_distance = 1000.0;
+  uint32_t obstacle_index = laserCharacteristics.getStraightIndex();
   for (float this_range : laser_ranges) {
-    if (this_range < min_range) {
-      min_range = this_range;
-      min_range_index = cur_range_index;
+    if (this_range < obstacle_distance) {
+      obstacle_distance = this_range;
+      obstacle_index = cur_range_index;
     }
     cur_range_index++;
   }
-  bool in_sight = min_range < DIST_WITHIN_SIGHT;
-  bool near = min_range < DIST_NEAR;
-  bool too_near = min_range < DIST_TOO_NEAR;
 
-  int32_t index_rel_to_straight =
-    min_range_index - (laserCharacteristics.getLeftmostIndex() / 2 - 1);
-  double obstacle_angle = laserCharacteristics.getAngleIncrement() * index_rel_to_straight;
-  VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(min_range, obstacle_angle);
-  return LaserAnalysis(in_sight, near, too_near, vector_to_obstacle);
+  int32_t obstacle_index_rel_to_straight =
+    obstacle_index - (laserCharacteristics.getLeftmostIndex() / 2 - 1);
+  double obstacle_angle = laserCharacteristics.getAngleIncrement() * obstacle_index_rel_to_straight;
+  return VectorByMagnitudeAngle(obstacle_distance, obstacle_angle);
 }

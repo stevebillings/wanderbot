@@ -16,12 +16,12 @@
 
 Action StateHandlerError::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const LaserAnalysis & laser_analysis) const
+  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
 {
   return Action(Velocity::create_stopped(), State::ERROR);
 }
 
-const char * StateHandlerError::name() const
+const char * StateHandlerError::getName() const
 {
   return "Error";
 }

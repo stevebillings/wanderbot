@@ -23,17 +23,24 @@ While in the default ("Go") state, the robot navigates using VFF (see below). Wh
 
 The robot uses a Virtual Force Field (VFF) algorithm to navigate. The VFF algorithm enables it to navigate around most obstacles, but does not prevent it from getting stuck in corners.
 
+### ROS dependency
+
+The only source file with ROS (ROS 2) dependencies is the main module wanderbot_node.cpp. It is a ROS node that:
+
+* Subscribes / listens to LaserScan messages for Lidar input data.
+* Publishes Twist messages to move the robot.
+
 ## The robot
 
 The robot is simulated (I used gazebo). It provides lidar readings by publishing sensor_msgs::msg::LaserScan messages, and accepts motion control commands by listening for geometry_msgs::msg::Twist messages.
 
 ## To build
 
-colcon build --symlink-install
+* colcon build --symlink-install
 
 ## To run
 
-One way to run the robot in the Gazebo simulator:
+To run the robot in the Gazebo simulator on a gazebo world that emphasizes the behavior of the VFF navigation algorithm:
 
 * In one window: ./scripts/start.sh
 * In another window: source install/setup.bash && ros2 run wanderbot wanderbot

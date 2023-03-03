@@ -21,7 +21,7 @@
 TEST(StateHandlerBlockedTest, Name)
 {
   StateHandlerBlocked state_handler = StateHandlerBlocked();
-  EXPECT_STREQ("Blocked", state_handler.name());
+  EXPECT_STREQ("Blocked", state_handler.getName());
 }
 
 TEST(StateHandlerBlockedTest, RecentlyBlocked)
@@ -29,10 +29,9 @@ TEST(StateHandlerBlockedTest, RecentlyBlocked)
   LaserCharacteristics laser_characteristics =
     LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
   auto vector_to_obstacle = VectorByMagnitudeAngle(4.0l, 0.0l);
-  LaserAnalysis laser_analysis = LaserAnalysis(true, false, false, vector_to_obstacle);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
-  Action action = state_handler.act(0.01l, laser_characteristics, laser_analysis);
+  Action action = state_handler.act(0.01l, laser_characteristics, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::BLOCKED);
   // Ensure the values are reasonable without being overly sensitive to magnitude
@@ -44,10 +43,9 @@ TEST(StateHandlerBlockedTest, BlockedForAWhile)
   LaserCharacteristics laser_characteristics =
     LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
   auto vector_to_obstacle = VectorByMagnitudeAngle(4.0l, 0.0l);
-  LaserAnalysis laser_analysis = LaserAnalysis(true, false, false, vector_to_obstacle);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
-  Action action = state_handler.act(5.0l, laser_characteristics, laser_analysis);
+  Action action = state_handler.act(5.0l, laser_characteristics, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::CHANGE_DIRECTION);
   // Ensure the values are reasonable without being overly sensitive to magnitude

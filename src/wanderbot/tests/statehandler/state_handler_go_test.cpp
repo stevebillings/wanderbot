@@ -23,10 +23,9 @@ TEST(StateHandlerGoTest, StraightAhead)
   LaserCharacteristics laser_characteristics =
     LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
   VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(5.0l, 0.0l);
-  LaserAnalysis laser_analysis = LaserAnalysis(true, false, false, vector_to_obstacle);
   StateHandlerGo state_handler = StateHandlerGo();
 
-  Action action = state_handler.act(10.0l, laser_characteristics, laser_analysis);
+  Action action = state_handler.act(10.0l, laser_characteristics, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::GO);
   // Ensure the values are reasonable without being overly sensitive to magnitude
@@ -40,10 +39,9 @@ TEST(StateHandlerGoTest, Blocked)
   LaserCharacteristics laser_characteristics =
     LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
   VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(0.5l, 0.0l);
-  LaserAnalysis laser_analysis = LaserAnalysis(true, false, false, vector_to_obstacle);
   StateHandlerGo state_handler = StateHandlerGo();
 
-  Action action = state_handler.act(10.0l, laser_characteristics, laser_analysis);
+  Action action = state_handler.act(10.0l, laser_characteristics, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::BLOCKED);
   // Ensure the values are reasonable without being overly sensitive to magnitude
@@ -57,10 +55,9 @@ TEST(StateHandlerGoTest, AheadRight)
   LaserCharacteristics laser_characteristics =
     LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
   VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
-  LaserAnalysis laser_analysis = LaserAnalysis(true, false, false, vector_to_obstacle);
   StateHandlerGo state_handler = StateHandlerGo();
 
-  Action action = state_handler.act(10.0l, laser_characteristics, laser_analysis);
+  Action action = state_handler.act(10.0l, laser_characteristics, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::GO);
   // Ensure the values are reasonable without being overly sensitive to magnitude

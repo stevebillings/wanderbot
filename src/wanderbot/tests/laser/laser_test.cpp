@@ -53,12 +53,9 @@ TEST(LaserTest, AnalysisStraight)
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
-  LaserAnalysis laser_analysis = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
-  EXPECT_TRUE(laser_analysis.isInSight());
-  EXPECT_TRUE(laser_analysis.isNear());
-  EXPECT_FALSE(laser_analysis.isTooNear());
-  EXPECT_NEAR(laser_analysis.getVectorToObstacle().getAngleRadians(), 0.0l, 0.01);
-  EXPECT_NEAR(laser_analysis.getVectorToObstacle().getMagnitude(), 1.5, 0.001);
+  VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
+  EXPECT_NEAR(vector_to_obstacle.getAngleRadians(), 0.0l, 0.01);
+  EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.5, 0.001);
 }
 
 TEST(LaserTest, AnalysisRight)
@@ -74,13 +71,9 @@ TEST(LaserTest, AnalysisRight)
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
-  LaserAnalysis laser_analysis = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
-  EXPECT_TRUE(laser_analysis.isInSight());
-  EXPECT_TRUE(laser_analysis.isNear());
-  EXPECT_FALSE(laser_analysis.isTooNear());
-  EXPECT_TRUE(laser_analysis.isToRight());
-  EXPECT_NEAR(laser_analysis.getVectorToObstacle().getMagnitude(), 1.6, 0.001);
-  EXPECT_TRUE(laser_analysis.getVectorToObstacle().getAngleRadians() < -1.0l);
+  VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
+  EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.6, 0.001);
+  EXPECT_TRUE(vector_to_obstacle.getAngleRadians() < -1.0l);
 }
 
 TEST(LaserTest, AnalysisTooNear)
@@ -95,9 +88,8 @@ TEST(LaserTest, AnalysisTooNear)
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
-  LaserAnalysis laser_analysis = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
-  EXPECT_TRUE(laser_analysis.isTooNear());
-  EXPECT_NEAR(laser_analysis.getVectorToObstacle().getMagnitude(), 1.4, 0.001);
+  VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
+  EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.4, 0.001);
 }
 
 int main(int argc, char ** argv)

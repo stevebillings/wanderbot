@@ -16,16 +16,18 @@
 
 Action StateHandlerGo::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const LaserAnalysis & laser_analysis) const
+  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
 {
-  if (laser_analysis.isTooNear()) {
+  // TODO centralize tunable parameters like this:
+  constexpr static double DIST_TOO_NEAR = 1.5;
+
+  if (vector_to_obstacle.getMagnitude() < DIST_TOO_NEAR) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }
-  auto new_motion_vector_by_standard_position = vff_calculator.getVffResult(
-    laser_analysis.getVectorToObstacle());
+  auto new_motion_vector_by_standard_position = vff_calculator.getVffResult(vector_to_obstacle);
   auto new_motion_vector_by_magnitude_angle =
     vector_converter.standardPositionToMagnitudeAngle(new_motion_vector_by_standard_position);
-  // TODO do we need both early returns? I think can get read of laser_analysis.isTooNear() altogether
+  // TODO do we need both early returns?
   if (abs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0l)) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }
@@ -37,7 +39,7 @@ Action StateHandlerGo::act(
   return Action(new_velocity, State::GO);
 }
 
-const char * StateHandlerGo::name() const
+const char * StateHandlerGo::getName() const
 {
   return "Go";
 }

@@ -16,7 +16,7 @@
 
 Action StateHandlerChangeDirection::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const LaserAnalysis & laser_analysis) const
+  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
 {
   if (seconds_in_this_state > 0.75) {
     return Action(Velocity::create_stopped(), State::GO);
@@ -24,7 +24,7 @@ Action StateHandlerChangeDirection::act(
   return Action(State::CHANGE_DIRECTION);
 }
 
-const char * StateHandlerChangeDirection::name() const
+const char * StateHandlerChangeDirection::getName() const
 {
   return "Change direction";
 }

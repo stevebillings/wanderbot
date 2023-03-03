@@ -16,7 +16,7 @@
 
 Action StateHandlerBlocked::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const LaserAnalysis & laser_analysis) const
+  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
 {
   if (seconds_in_this_state > 1.0) {
     return Action(Velocity::create_spin_left(), State::CHANGE_DIRECTION);
@@ -24,7 +24,7 @@ Action StateHandlerBlocked::act(
   return Action(State::BLOCKED);
 }
 
-const char * StateHandlerBlocked::name() const \
+const char * StateHandlerBlocked::getName() const \
 {
   return "Blocked";
 }

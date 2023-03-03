@@ -26,8 +26,8 @@ public:
   [[nodiscard]] Action act(
     const double seconds_in_this_state,
     const LaserCharacteristics & laser_characteristics,
-    const LaserAnalysis & laser_analysis) const override;
-  const char * name() const override;
+    const VectorByMagnitudeAngle & vector_to_obstacle) const override;
+  const char * getName() const override;
   const State getState() const override;
 
 private:

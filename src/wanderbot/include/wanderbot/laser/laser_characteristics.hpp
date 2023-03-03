@@ -20,7 +20,6 @@
 class LaserCharacteristics
 {
 public:
-  // TODO this needs laser_angle_min + laser_angle_increment
   LaserCharacteristics(
     const double angle_min, const double angle_increment, const uint32_t leftmost_index,
     const uint32_t straight_index)

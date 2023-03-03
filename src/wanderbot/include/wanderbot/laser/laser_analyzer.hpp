@@ -17,7 +17,7 @@
 
 #include <vector>
 
-#include "laser_analysis.hpp"
+#include "wanderbot/vector/vector_by_magnitude_angle.hpp"
 #include "laser_characteristics.hpp"
 
 class LaserAnalyzer
@@ -26,15 +26,9 @@ public:
   LaserCharacteristics determineCharacteristics(
     const double laser_angle_min, const double laser_angle_increment,
     const std::vector<float> & laser_ranges) const;
-  LaserAnalysis analyze(
+  VectorByMagnitudeAngle analyze(
     const LaserCharacteristics & laserCharacteristics,
     const std::vector<float> & laser_ranges) const;
-
-private:
-  // TODO: consolidate tuning parameters like these:
-  constexpr static double DIST_WITHIN_SIGHT = 9.5;
-  constexpr static double DIST_NEAR = 4.0;
-  constexpr static double DIST_TOO_NEAR = 1.5;
 };
 
 #endif  // WANDERBOT__LASER__LASER_ANALYZER_HPP_

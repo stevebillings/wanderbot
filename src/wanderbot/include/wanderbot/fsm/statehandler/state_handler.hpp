@@ -17,33 +17,21 @@
 
 #include "wanderbot/fsm/action.hpp"
 #include "wanderbot/fsm/state.hpp"
-#include "wanderbot/laser/laser_analysis.hpp"
 #include "wanderbot/laser/laser_characteristics.hpp"
-#include "wanderbot/velocity/velocity_calculator.hpp"
+#include "wanderbot/vector/vector_by_magnitude_angle.hpp"
 
 // the virtual class for State
 // Each concrete state object implement the act() method for a specific state
 class StateHandler
 {
 public:
-  // TODO: rename to getName
-  virtual const char * name() const = 0;
+  virtual const char * getName() const = 0;
   virtual const State getState() const = 0;
   virtual Action act(
     const double seconds_in_this_state,
     const LaserCharacteristics & laser_characteristics,
-    const LaserAnalysis & laser_analysis) const = 0;
+    const VectorByMagnitudeAngle & vector_to_obstacle) const = 0;
   virtual ~StateHandler() = default;
-
-protected:
-  // TODO rethink this:
-  const VelocityCalculator & getVelocityCalculator() const {return velocity_calculator_;}
-
-private:
-  // TODO: inject this dependency (require subclass to provide the dep via a virtual getter;
-  //  inject dep into each subclass)
-  // TODO: check for this same error elsewhere
-  VelocityCalculator velocity_calculator_ = VelocityCalculator();
 };
 
 #endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_HPP_
