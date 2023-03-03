@@ -1,0 +1,8 @@
+build/
+log/
+install/
+__pycache__/
+.idea/
+.cmake/
+cmake-build-debug/
+cmake-build-lidar_monitor/
