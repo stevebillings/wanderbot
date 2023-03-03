@@ -18,7 +18,7 @@ find_package(std_msgs REQUIRED)
 include_directories(include)
 
 add_executable(wanderbot
-        src/wanderbot_node.cpp
+        src/ros2/wanderbot_node.cpp
         include/wanderbot/fsm/state.hpp
         src/fsm/statehandler/state_handler_go.cpp include/wanderbot/fsm/statehandler/state_handler_go.hpp
         src/fsm/statehandler/state_handler_change_direction.cpp include/wanderbot/fsm/statehandler/state_handler_change_direction.hpp
@@ -35,7 +35,7 @@ add_executable(wanderbot
         src/laser/laser_analysis.cpp include/wanderbot/laser/laser_analysis.hpp
         include/wanderbot/fsm/statehandler/state_handler.hpp
         src/fsm/statehandler/state_handlers.cpp include/wanderbot/fsm/statehandler/state_handlers.hpp
-        src/action.cpp include/wanderbot/action.hpp
+        src/fsm/action.cpp include/wanderbot/fsm/action.hpp
 )
 
 set(dependencies

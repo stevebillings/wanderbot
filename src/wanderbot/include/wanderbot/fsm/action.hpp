@@ -21,7 +21,7 @@
 
 #include <optional>
 
-#include "fsm/state.hpp"
+#include "state.hpp"
 #include "wanderbot/velocity/velocity.hpp"
 
 class Action

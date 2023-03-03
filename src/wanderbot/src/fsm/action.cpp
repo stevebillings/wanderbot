@@ -12,7 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "wanderbot/action.hpp"
+#include "wanderbot/fsm/action.hpp"
 
 std::optional<Velocity> Action::get_velocity() const {return velocity_;}
 State Action::get_state() const {return state_;}

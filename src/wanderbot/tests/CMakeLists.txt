@@ -26,7 +26,7 @@ ament_add_gtest(state_handler_go_test
         ../include/wanderbot/vector/vector_converter.hpp ../src/vector/vector_converter.cpp
         ../include/wanderbot/vector/vector_by_magnitude_angle.hpp ../src/vector/vector_by_magnitude_angle.cpp
         ../include/wanderbot/vector/vector_by_standard_position.hpp ../src/vector/vector_by_standard_position.cpp
-        ../src/action.cpp ../include/wanderbot/action.hpp
+        ../src/fsm/action.cpp ../include/wanderbot/fsm/action.hpp
         ../include/wanderbot/vector/vector_by_magnitude_angle.hpp ../src/vector/vector_by_magnitude_angle.cpp)
 ament_add_gtest(state_handler_blocked_test
         statehandler/state_handler_blocked_test.cpp
@@ -36,7 +36,7 @@ ament_add_gtest(state_handler_blocked_test
         ../include/wanderbot/laser/laser_analysis.hpp ../src/laser/laser_analysis.cpp
         ../include/wanderbot/velocity/velocity.hpp ../src/velocity/velocity.cpp
         ../include/wanderbot/velocity/velocity_calculator.hpp ../src/velocity/velocity_calculator.cpp
-        ../src/action.cpp ../include/wanderbot/action.hpp
+        ../src/fsm/action.cpp ../include/wanderbot/fsm/action.hpp
         ../include/wanderbot/vector/vector_by_magnitude_angle.hpp ../src/vector/vector_by_magnitude_angle.cpp)
 
 ament_add_gtest(vector_force_field_calculator_test
