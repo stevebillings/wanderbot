@@ -27,7 +27,6 @@ Action StateHandlerGo::act(
   auto new_motion_vector_by_standard_position = vff_calculator.getVffResult(vector_to_obstacle);
   auto new_motion_vector_by_magnitude_angle =
     vector_converter.standardPositionToMagnitudeAngle(new_motion_vector_by_standard_position);
-  // TODO do we need both early returns?
   if (abs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0l)) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }

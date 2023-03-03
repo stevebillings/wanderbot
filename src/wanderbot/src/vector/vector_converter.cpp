@@ -25,3 +25,11 @@ VectorByMagnitudeAngle VectorConverter::standardPositionToMagnitudeAngle(
     atan2(vectorByStandardPosition.getEndpointY(), vectorByStandardPosition.getEndpointX());
   return VectorByMagnitudeAngle(magnitude, angleRadians);
 }
+
+VectorByStandardPosition VectorConverter::magnitudeAngleToStandardPosition(
+  const VectorByMagnitudeAngle & vector_by_magnitude_angle) const
+{
+  double x = vector_by_magnitude_angle.getMagnitude() * cos(vector_by_magnitude_angle.getAngleRadians());
+  double y = vector_by_magnitude_angle.getMagnitude() * sin(vector_by_magnitude_angle.getAngleRadians());
+  return VectorByStandardPosition(x, y);
+}

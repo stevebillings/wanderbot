@@ -15,7 +15,11 @@
 #ifndef WANDERBOT__TESTS__TEST_CONSTANTS_HPP_
 #define WANDERBOT__TESTS__TEST_CONSTANTS_HPP_
 
-const double LASER_ANGLE_MINIMUM = -1.396263;
-const double LASER_ANGLE_INCREMENT = 0.004370;
+class TestConstants
+{
+public:
+  static constexpr double LASER_ANGLE_MINIMUM = -1.396263;
+  static constexpr double LASER_ANGLE_INCREMENT = 0.004370;
+};
 
 #endif  // WANDERBOT__TESTS__TEST_CONSTANTS_HPP_

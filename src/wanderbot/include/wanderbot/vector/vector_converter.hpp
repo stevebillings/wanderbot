@@ -26,6 +26,9 @@ class VectorConverter
 public:
   VectorByMagnitudeAngle standardPositionToMagnitudeAngle(
     const VectorByStandardPosition & vectorByStandardPosition) const;
+
+  VectorByStandardPosition magnitudeAngleToStandardPosition(
+    const VectorByMagnitudeAngle & vector_by_magnitude_angle) const;
 };
 
 #endif  // WANDERBOT__VECTOR__VECTOR_CONVERTER_HPP_

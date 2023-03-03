@@ -27,7 +27,7 @@ TEST(StateHandlerBlockedTest, Name)
 TEST(StateHandlerBlockedTest, RecentlyBlocked)
 {
   LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
+    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
   auto vector_to_obstacle = VectorByMagnitudeAngle(4.0l, 0.0l);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
@@ -41,7 +41,7 @@ TEST(StateHandlerBlockedTest, RecentlyBlocked)
 TEST(StateHandlerBlockedTest, BlockedForAWhile)
 {
   LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
+    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
   auto vector_to_obstacle = VectorByMagnitudeAngle(4.0l, 0.0l);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 

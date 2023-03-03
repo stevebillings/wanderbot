@@ -14,7 +14,6 @@
 
 #include <gtest/gtest.h>
 
-// TODO probably not the best way:
 #include "../test_constants.hpp"
 #include "wanderbot/laser/laser_analyzer.hpp"
 #include "rclcpp/rclcpp.hpp"
@@ -30,9 +29,9 @@ TEST(LaserTest, CharacteristicsTest)
   laser_ranges.push_back(10.0);
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
-    LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
-  EXPECT_NEAR(laser_characteristics.getAngleMin(), LASER_ANGLE_MINIMUM, 0.001);
-  EXPECT_NEAR(laser_characteristics.getAngleIncrement(), LASER_ANGLE_INCREMENT, 0.001);
+    TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
+  EXPECT_NEAR(laser_characteristics.getAngleMin(), TestConstants::LASER_ANGLE_MINIMUM, 0.001);
+  EXPECT_NEAR(laser_characteristics.getAngleIncrement(), TestConstants::LASER_ANGLE_INCREMENT, 0.001);
   EXPECT_EQ(laser_characteristics.getLeftmostIndex(), 4ul);
   EXPECT_EQ(laser_characteristics.getStraightIndex(), 2ul);
 }
@@ -52,7 +51,7 @@ TEST(LaserTest, AnalysisStraight)
   }
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
-    LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
+    TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
   VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
   EXPECT_NEAR(vector_to_obstacle.getAngleRadians(), 0.0l, 0.01);
   EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.5, 0.001);
@@ -70,7 +69,7 @@ TEST(LaserTest, AnalysisRight)
   }
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
-    LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
+    TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
   VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
   EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.6, 0.001);
   EXPECT_TRUE(vector_to_obstacle.getAngleRadians() < -1.0l);
@@ -87,7 +86,7 @@ TEST(LaserTest, AnalysisTooNear)
   laser_ranges.push_back(10.0);
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
-    LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, laser_ranges);
+    TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
   VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
   EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.4, 0.001);
 }

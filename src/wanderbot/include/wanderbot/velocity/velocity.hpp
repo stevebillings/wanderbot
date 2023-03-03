@@ -20,11 +20,8 @@ class Velocity
 public:
   Velocity(double forward, double yaw);
   static Velocity create_stopped();
-  static Velocity create_spin_right();
   static Velocity create_spin_left();
   static Velocity create_reverse();
-  static Velocity create_reverse_left();
-  static Velocity create_reverse_right();
   double get_forward() const;
   double get_yaw() const;
 

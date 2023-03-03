@@ -21,7 +21,7 @@
 TEST(StateHandlerGoTest, StraightAhead)
 {
   LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
+    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
   VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(5.0l, 0.0l);
   StateHandlerGo state_handler = StateHandlerGo();
 
@@ -37,7 +37,7 @@ TEST(StateHandlerGoTest, StraightAhead)
 TEST(StateHandlerGoTest, Blocked)
 {
   LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
+    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
   VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(0.5l, 0.0l);
   StateHandlerGo state_handler = StateHandlerGo();
 
@@ -53,7 +53,7 @@ TEST(StateHandlerGoTest, Blocked)
 TEST(StateHandlerGoTest, AheadRight)
 {
   LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(LASER_ANGLE_MINIMUM, LASER_ANGLE_INCREMENT, 4ul, 2ul);
+    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
   VectorByMagnitudeAngle vector_to_obstacle = VectorByMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
   StateHandlerGo state_handler = StateHandlerGo();
 

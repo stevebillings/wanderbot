@@ -31,7 +31,6 @@ public:
   const State getState() const override;
 
 private:
-  // TODO inject
   const VectorForceFieldCalculator vff_calculator = VectorForceFieldCalculator();
   const VectorConverter vector_converter = VectorConverter();
 };
