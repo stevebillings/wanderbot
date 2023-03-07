@@ -16,7 +16,7 @@
 
 Action StateHandlerChangeDirection::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
+  const Vector & vector_to_obstacle) const
 {
   if (seconds_in_this_state > 0.75) {
     return Action(Velocity::create_stopped(), State::GO);

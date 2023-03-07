@@ -26,9 +26,7 @@ add_executable(wanderbot
         src/fsm/statehandler/state_handler_error.cpp include/wanderbot/fsm/statehandler/state_handler_error.hpp
         src/velocity/vff/vector_force_field_calculator.cpp include/wanderbot/velocity/vff/vector_force_field_calculator.hpp
         src/velocity/velocity.cpp include/wanderbot/velocity/velocity.hpp
-        src/vector/vector_by_standard_position.cpp include/wanderbot/vector/vector_by_standard_position.hpp
-        src/vector/vector_by_magnitude_angle.cpp include/wanderbot/vector/vector_by_magnitude_angle.hpp
-        src/vector/vector_converter.cpp include/wanderbot/vector/vector_converter.hpp
+        src/linearalgebra/vector.cpp include/wanderbot/linearalgebra/vector.hpp
         src/laser/laser_analyzer.cpp include/wanderbot/laser/laser_analyzer.hpp
         src/laser/laser_characteristics.cpp include/wanderbot/laser/laser_characteristics.hpp
         include/wanderbot/fsm/statehandler/state_handler.hpp

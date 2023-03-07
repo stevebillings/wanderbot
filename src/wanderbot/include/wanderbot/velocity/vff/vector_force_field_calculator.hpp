@@ -15,22 +15,17 @@
 #ifndef WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
 #define WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
 
-#include "wanderbot/vector/vector_by_magnitude_angle.hpp"
-#include "wanderbot/vector/vector_by_standard_position.hpp"
-#include "wanderbot/vector/vector_converter.hpp"
 #include <algorithm>
 #include <cmath>
 #include <vector>
 
+#include "wanderbot/linearalgebra/vector.hpp"
 
 class VectorForceFieldCalculator
 {
 public:
-  [[nodiscard]] VectorByStandardPosition getVffResult(const VectorByMagnitudeAngle & vector_to_obstacle, const VectorByMagnitudeAngle & goal_vector) const;
-  [[nodiscard]] VectorByStandardPosition getVffResult(const VectorByMagnitudeAngle & vector_to_obstacle) const;
-
-private:
-  VectorConverter vector_converter_ = VectorConverter();
+  Vector getVffResult(const Vector & vector_to_obstacle, const Vector & goal_vector) const;
+  Vector getVffResult(const Vector & vector_to_obstacle) const;
 };
 
 #endif  // WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_

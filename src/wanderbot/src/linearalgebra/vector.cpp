@@ -12,13 +12,34 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "wanderbot/vector/vector_by_magnitude_angle.hpp"
+#include "wanderbot/linearalgebra/vector.hpp"
 
-double VectorByMagnitudeAngle::getMagnitude() const {return magnitude_;}
+Vector Vector::createUsingStandardPosition(double x, double y)
+{
+  double magnitude = sqrt(x * x + y * y);
 
-double VectorByMagnitudeAngle::getAngleRadians() const {return angle_radians_;}
+  double angleRadians = atan2(y, x);
+  return Vector(magnitude, angleRadians);
+}
+Vector Vector::createUsingMagnituredAngle(double magnitude, double angle_radians)
+{
+  return Vector(magnitude, angle_radians);
+}
 
-std::string VectorByMagnitudeAngle::toString() const
+double Vector::getMagnitude() const {return magnitude_;}
+
+double Vector::getAngleRadians() const {return angle_radians_;}
+
+double Vector::getStandardPositionX() const
+{
+  return magnitude_ * cos(angle_radians_);
+}
+double Vector::getStandardPositionY() const
+{
+  return magnitude_ * sin(angle_radians_);
+}
+
+std::string Vector::toString() const
 {
   std::string description = "";
 

@@ -49,11 +49,11 @@ private:
     RCLCPP_INFO(logger_, "State: %s", cur_state_handler_->getName());
     double current_time = now().seconds();
     init_laser_characteristics();
-    VectorByMagnitudeAngle vector_to_obstacle =
+    Vector vector_to_obstacle =
       laser_analyzer_.analyze(*laser_characteristics_, last_laser_scan_msg_->ranges);
 
     Action action = cur_state_handler_->act(
-      current_time - time_entered_state_seconds_, *laser_characteristics_, vector_to_obstacle);
+      current_time - time_entered_state_seconds_, vector_to_obstacle);
 
     if (action.get_state() != cur_state_handler_->getState()) {
       time_entered_state_seconds_ = current_time;

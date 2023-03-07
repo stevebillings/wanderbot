@@ -13,16 +13,16 @@
 // limitations under the License.
 
 #include "wanderbot/velocity/vff/vector_force_field_calculator.hpp"
-[[nodiscard]] VectorByStandardPosition VectorForceFieldCalculator::getVffResult(const VectorByMagnitudeAngle & vector_to_obstacle) const
+
+Vector VectorForceFieldCalculator::getVffResult(const Vector & vector_to_obstacle) const
 {
   const float VFF_GOAL_VECTOR_MAGNITUDE = 3.0;
-  auto goal_vector = VectorByMagnitudeAngle(VFF_GOAL_VECTOR_MAGNITUDE, 0.0l);
+  auto goal_vector = Vector::createUsingMagnituredAngle(VFF_GOAL_VECTOR_MAGNITUDE, 0.0l);
   return getVffResult(vector_to_obstacle, goal_vector);
 }
 // TODO: wait, there's a cpp way to specify a default param value:
-[[nodiscard]] VectorByStandardPosition VectorForceFieldCalculator::getVffResult(const VectorByMagnitudeAngle & vector_to_obstacle, const VectorByMagnitudeAngle & goal_vector) const
+Vector VectorForceFieldCalculator::getVffResult(const Vector & vector_to_obstacle, const Vector & goal_vector) const
 {
-  auto goal_vector_by_standard_position = vector_converter_.magnitudeAngleToStandardPosition(goal_vector);
   double repulsive_vector_endpoint_x = 0.0L;
   double repulsive_vector_endpoint_y = 0.0L;
 
@@ -36,7 +36,7 @@
     repulsive_vector_endpoint_y = sin(obstacle_opposite_angle) * repulsive_vector_magnitude;
   }
   // Add the repulsive vector to the goal vector to get the result vector (path to avoid obstacle)
-  double result_endpoint_x = repulsive_vector_endpoint_x + goal_vector_by_standard_position.getEndpointX();
-  double result_endpoint_y = repulsive_vector_endpoint_y + goal_vector_by_standard_position.getEndpointY();
-  return VectorByStandardPosition(result_endpoint_x, result_endpoint_y);
+  double result_endpoint_x = repulsive_vector_endpoint_x + goal_vector.getStandardPositionX();
+  double result_endpoint_y = repulsive_vector_endpoint_y + goal_vector.getStandardPositionY();
+  return Vector::createUsingStandardPosition(result_endpoint_x, result_endpoint_y);
 }

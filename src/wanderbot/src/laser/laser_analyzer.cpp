@@ -24,7 +24,7 @@ LaserCharacteristics LaserAnalyzer::determineCharacteristics(
     laser_angle_min, laser_angle_increment, leftmost_index, straight_index);
 }
 
-VectorByMagnitudeAngle LaserAnalyzer::analyze(
+Vector LaserAnalyzer::analyze(
   const LaserCharacteristics & laserCharacteristics, const std::vector<float> & laser_ranges) const
 {
   int cur_range_index = 0;
@@ -41,5 +41,5 @@ VectorByMagnitudeAngle LaserAnalyzer::analyze(
   int32_t obstacle_index_rel_to_straight =
     obstacle_index - (laserCharacteristics.getLeftmostIndex() / 2 - 1);
   double obstacle_angle = laserCharacteristics.getAngleIncrement() * obstacle_index_rel_to_straight;
-  return VectorByMagnitudeAngle(obstacle_distance, obstacle_angle);
+  return Vector::createUsingMagnituredAngle(obstacle_distance, obstacle_angle);
 }

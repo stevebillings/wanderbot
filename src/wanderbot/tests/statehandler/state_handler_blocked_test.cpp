@@ -16,8 +16,6 @@
 
 #include <gtest/gtest.h>
 
-#include "../test_constants.hpp"
-
 TEST(StateHandlerBlockedTest, Name)
 {
   StateHandlerBlocked state_handler = StateHandlerBlocked();
@@ -26,12 +24,10 @@ TEST(StateHandlerBlockedTest, Name)
 
 TEST(StateHandlerBlockedTest, RecentlyBlocked)
 {
-  LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
-  auto vector_to_obstacle = VectorByMagnitudeAngle(4.0l, 0.0l);
+  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(4.0l, 0.0l);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
-  Action action = state_handler.act(0.01l, laser_characteristics, vector_to_obstacle);
+  Action action = state_handler.act(0.01l, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::BLOCKED);
   // Ensure the values are reasonable without being overly sensitive to magnitude
@@ -40,12 +36,10 @@ TEST(StateHandlerBlockedTest, RecentlyBlocked)
 
 TEST(StateHandlerBlockedTest, BlockedForAWhile)
 {
-  LaserCharacteristics laser_characteristics =
-    LaserCharacteristics(TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, 4ul, 2ul);
-  auto vector_to_obstacle = VectorByMagnitudeAngle(4.0l, 0.0l);
+  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(4.0l, 0.0l);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
-  Action action = state_handler.act(5.0l, laser_characteristics, vector_to_obstacle);
+  Action action = state_handler.act(5.0l, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::CHANGE_DIRECTION);
   // Ensure the values are reasonable without being overly sensitive to magnitude

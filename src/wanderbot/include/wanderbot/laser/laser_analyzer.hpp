@@ -17,8 +17,8 @@
 
 #include <vector>
 
-#include "wanderbot/vector/vector_by_magnitude_angle.hpp"
 #include "laser_characteristics.hpp"
+#include "wanderbot/linearalgebra/vector.hpp"
 
 class LaserAnalyzer
 {
@@ -26,7 +26,7 @@ public:
   LaserCharacteristics determineCharacteristics(
     const double laser_angle_min, const double laser_angle_increment,
     const std::vector<float> & laser_ranges) const;
-  VectorByMagnitudeAngle analyze(
+  Vector analyze(
     const LaserCharacteristics & laserCharacteristics,
     const std::vector<float> & laser_ranges) const;
 };

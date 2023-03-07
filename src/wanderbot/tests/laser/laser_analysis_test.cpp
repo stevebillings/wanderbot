@@ -18,27 +18,8 @@
 #include "wanderbot/laser/laser_analyzer.hpp"
 #include "rclcpp/rclcpp.hpp"
 
-TEST(LaserTest, CharacteristicsTest)
-{
-  LaserAnalyzer laserAnalyzer;
-  std::vector<float> laser_ranges;
-  laser_ranges.push_back(10.0);
-  laser_ranges.push_back(8.0);
-  laser_ranges.push_back(2.0);
-  laser_ranges.push_back(8.0);
-  laser_ranges.push_back(10.0);
 
-  LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
-    TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
-  EXPECT_NEAR(laser_characteristics.getAngleMin(), TestConstants::LASER_ANGLE_MINIMUM, 0.001);
-  EXPECT_NEAR(laser_characteristics.getAngleIncrement(), TestConstants::LASER_ANGLE_INCREMENT, 0.001);
-  EXPECT_EQ(laser_characteristics.getLeftmostIndex(), 4ul);
-  EXPECT_EQ(laser_characteristics.getStraightIndex(), 2ul);
-}
-
-// TODO separate characteristics and analysis tests into separate test files
-
-TEST(LaserTest, AnalysisStraight)
+TEST(LaserAnalysisTest, AnalysisStraight)
 {
   LaserAnalyzer laserAnalyzer;
   std::vector<float> laser_ranges;
@@ -52,12 +33,12 @@ TEST(LaserTest, AnalysisStraight)
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
-  VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
+  Vector vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
   EXPECT_NEAR(vector_to_obstacle.getAngleRadians(), 0.0l, 0.01);
   EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.5, 0.001);
 }
 
-TEST(LaserTest, AnalysisRight)
+TEST(LaserAnalysisTest, AnalysisRight)
 {
   LaserAnalyzer laserAnalyzer;
   std::vector<float> laser_ranges;
@@ -70,12 +51,12 @@ TEST(LaserTest, AnalysisRight)
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
-  VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
+  Vector vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
   EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.6, 0.001);
   EXPECT_TRUE(vector_to_obstacle.getAngleRadians() < -1.0l);
 }
 
-TEST(LaserTest, AnalysisTooNear)
+TEST(LaserAnalysisTest, AnalysisTooNear)
 {
   LaserAnalyzer laserAnalyzer;
   std::vector<float> laser_ranges;
@@ -87,7 +68,7 @@ TEST(LaserTest, AnalysisTooNear)
 
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
-  VectorByMagnitudeAngle vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
+  Vector vector_to_obstacle = laserAnalyzer.analyze(laser_characteristics, laser_ranges);
   EXPECT_NEAR(vector_to_obstacle.getMagnitude(), 1.4, 0.001);
 }
 

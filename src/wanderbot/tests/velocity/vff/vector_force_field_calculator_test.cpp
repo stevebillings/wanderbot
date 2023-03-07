@@ -19,29 +19,31 @@
 TEST(VectorForceField, Far)
 {
   auto vff = VectorForceFieldCalculator();
-  auto vector_to_obstacle = VectorByMagnitudeAngle(10.0l, 0.0l);
-  VectorByStandardPosition result = vff.getVffResult(vector_to_obstacle);
+  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(10.0l, 0.0l);
+  Vector result = vff.getVffResult(vector_to_obstacle);
 
-  ASSERT_TRUE(result.getEndpointX() > 2.0l);
-  ASSERT_NEAR(result.getEndpointY(), 0.0, 0.001);
+  ASSERT_TRUE(result.getMagnitude() > 2.0l);
+  ASSERT_NEAR(result.getAngleRadians(), 0.0, 0.001);
 }
 
 TEST(VectorForceField, AheadClose)
 {
   auto vff = VectorForceFieldCalculator();
-  auto vector_to_obstacle = VectorByMagnitudeAngle(3.0l, 0.0l);
-  VectorByStandardPosition result = vff.getVffResult(vector_to_obstacle);
+  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(3.0l, 0.0l);
+  Vector result = vff.getVffResult(vector_to_obstacle);
 
-  ASSERT_NEAR(result.getEndpointX(), 0.1, 0.1);
+  ASSERT_NEAR(result.getMagnitude(), 0.1, 0.1);
 }
 
-TEST(VectorForceField, RightClose)
+TEST(VectorForceField, LeftVeryClose)
 {
   auto vff = VectorForceFieldCalculator();
-  auto vector_to_obstacle = VectorByMagnitudeAngle(0.1l, M_PI / 4.0);
-  VectorByStandardPosition result = vff.getVffResult(vector_to_obstacle);
+  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(0.1l, M_PI / 4.0);
+  Vector result = vff.getVffResult(vector_to_obstacle);
 
-  ASSERT_TRUE(result.getEndpointY() < 1.0);
+  // Obstacle should be pushing us back and to the right
+  ASSERT_TRUE(result.getAngleRadians() < 0.0);
+  ASSERT_TRUE(result.getAngleRadians() > -1 * M_PI);
 }
 
 int main(int argc, char ** argv)

@@ -15,24 +15,20 @@
 #ifndef WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_GO_HPP_
 #define WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_GO_HPP_
 
-#include "wanderbot/vector/vector_by_standard_position.hpp"
-#include "wanderbot/vector/vector_converter.hpp"
-#include "wanderbot/velocity/vff/vector_force_field_calculator.hpp"
 #include "state_handler.hpp"
+#include "wanderbot/velocity/vff/vector_force_field_calculator.hpp"
 
 class StateHandlerGo : public StateHandler
 {
 public:
-  [[nodiscard]] Action act(
+  Action act(
     const double seconds_in_this_state,
-    const LaserCharacteristics & laser_characteristics,
-    const VectorByMagnitudeAngle & vector_to_obstacle) const override;
+    const Vector & vector_to_obstacle) const override;
   const char * getName() const override;
   const State getState() const override;
 
 private:
   const VectorForceFieldCalculator vff_calculator = VectorForceFieldCalculator();
-  const VectorConverter vector_converter = VectorConverter();
 };
 
 #endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_GO_HPP_

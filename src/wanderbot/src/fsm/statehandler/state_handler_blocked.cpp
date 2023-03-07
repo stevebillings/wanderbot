@@ -16,7 +16,7 @@
 
 Action StateHandlerBlocked::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
+  const Vector & vector_to_obstacle) const
 {
   if (seconds_in_this_state > 1.0) {
     return Action(Velocity::create_spin_left(), State::CHANGE_DIRECTION);

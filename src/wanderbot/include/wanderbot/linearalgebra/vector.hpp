@@ -12,25 +12,30 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__VECTOR__VECTOR_BY_MAGNITUDE_ANGLE_HPP_
-#define WANDERBOT__VECTOR__VECTOR_BY_MAGNITUDE_ANGLE_HPP_
+#ifndef WANDERBOT__VECTOR__VECTOR_HPP_
+#define WANDERBOT__VECTOR__VECTOR_HPP_
 
+#include <cmath>
 #include <string>
 
-class VectorByMagnitudeAngle
+class Vector
 {
 public:
-  VectorByMagnitudeAngle(double magnitude, double angle_radians)
-  : magnitude_(magnitude), angle_radians_(angle_radians)
-  {
-  }
+  static Vector createUsingStandardPosition(double x, double y);
+  static Vector createUsingMagnituredAngle(double magnitude, double angle_radians);
   double getMagnitude() const;
   double getAngleRadians() const;
+  double getStandardPositionX() const;
+  double getStandardPositionY() const;
   std::string toString() const;
 
 private:
+  Vector(double magnitude, double angle_radians)
+  : magnitude_(magnitude), angle_radians_(angle_radians)
+  {
+  }
   double magnitude_;
   double angle_radians_;
 };
 
-#endif  // WANDERBOT__VECTOR__VECTOR_BY_MAGNITUDE_ANGLE_HPP_
+#endif  // WANDERBOT__VECTOR__VECTOR_HPP_

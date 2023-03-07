@@ -16,7 +16,7 @@
 
 Action StateHandlerGo::act(
   const double seconds_in_this_state,
-  const LaserCharacteristics & laser_characteristics, const VectorByMagnitudeAngle & vector_to_obstacle) const
+  const Vector & vector_to_obstacle) const
 {
   // TODO centralize tunable parameters like this:
   constexpr static double DIST_TOO_NEAR = 1.5;
@@ -24,9 +24,7 @@ Action StateHandlerGo::act(
   if (vector_to_obstacle.getMagnitude() < DIST_TOO_NEAR) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }
-  auto new_motion_vector_by_standard_position = vff_calculator.getVffResult(vector_to_obstacle);
-  auto new_motion_vector_by_magnitude_angle =
-    vector_converter.standardPositionToMagnitudeAngle(new_motion_vector_by_standard_position);
+  auto new_motion_vector_by_magnitude_angle = vff_calculator.getVffResult(vector_to_obstacle);
   if (abs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0l)) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }

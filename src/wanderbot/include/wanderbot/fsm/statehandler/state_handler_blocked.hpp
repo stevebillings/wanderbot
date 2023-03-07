@@ -22,8 +22,7 @@ class StateHandlerBlocked : public StateHandler
 public:
   Action act(
     const double seconds_in_this_state,
-    const LaserCharacteristics & laser_characteristics,
-    const VectorByMagnitudeAngle & vector_to_obstacle) const override;
+    const Vector & vector_to_obstacle) const override;
   const char * getName() const override;
   const State getState() const override;
 };
