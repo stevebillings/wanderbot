@@ -16,6 +16,7 @@
 #define WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_GO_HPP_
 
 #include "state_handler.hpp"
+#include "wanderbot/config/config.hpp"
 #include "wanderbot/velocity/vff/vector_force_field_calculator.hpp"
 
 class StateHandlerGo : public StateHandler

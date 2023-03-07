@@ -20,17 +20,15 @@ Vector VectorForceFieldCalculator::getVffResult(const Vector & vector_to_obstacl
   auto goal_vector = Vector::createUsingMagnituredAngle(VFF_GOAL_VECTOR_MAGNITUDE, 0.0l);
   return getVffResult(vector_to_obstacle, goal_vector);
 }
-// TODO: wait, there's a cpp way to specify a default param value:
+
 Vector VectorForceFieldCalculator::getVffResult(const Vector & vector_to_obstacle, const Vector & goal_vector) const
 {
   double repulsive_vector_endpoint_x = 0.0L;
   double repulsive_vector_endpoint_y = 0.0L;
 
-  // TODO centralize tuning parameters like these:
-  const float VFF_MINIMUM_IGNORABLE_DISTANCE = 6.0;
-  if (vector_to_obstacle.getMagnitude() < VFF_MINIMUM_IGNORABLE_DISTANCE) {
+  if (vector_to_obstacle.getMagnitude() < Config::VFF_MINIMUM_IGNORABLE_DISTANCE) {
     float obstacle_opposite_angle = vector_to_obstacle.getAngleRadians() + M_PI;
-    float repulsive_vector_magnitude = VFF_MINIMUM_IGNORABLE_DISTANCE - vector_to_obstacle.getMagnitude();
+    float repulsive_vector_magnitude = Config::VFF_MINIMUM_IGNORABLE_DISTANCE - vector_to_obstacle.getMagnitude();
     // Calculate cartesian (x, y) components from polar (angle, distance)
     repulsive_vector_endpoint_x = cos(obstacle_opposite_angle) * repulsive_vector_magnitude;
     repulsive_vector_endpoint_y = sin(obstacle_opposite_angle) * repulsive_vector_magnitude;

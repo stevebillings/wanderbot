@@ -12,10 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//
-// Created by stevebillings on 12/17/22.
-//
-
 #ifndef WANDERBOT__ACTION_HPP_
 #define WANDERBOT__ACTION_HPP_
 

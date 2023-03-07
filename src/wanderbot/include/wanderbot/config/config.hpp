@@ -12,21 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
-#define WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
+#ifndef WANDERBOT_CONFIG_HPP
+#define WANDERBOT_CONFIG_HPP
 
-#include "wanderbot/config/config.hpp"
-#include <algorithm>
-#include <cmath>
-#include <vector>
-
-#include "wanderbot/linearalgebra/vector.hpp"
-
-class VectorForceFieldCalculator
+class Config
 {
 public:
-  Vector getVffResult(const Vector & vector_to_obstacle, const Vector & goal_vector) const;
-  Vector getVffResult(const Vector & vector_to_obstacle) const;
+  static constexpr double VFF_MINIMUM_IGNORABLE_DISTANCE = 6.0;
+  static constexpr double OBSTACLE_MINIMUM_SAFE_DISTANCE = 1.5;
+  static constexpr double THROTTLE_SETTING = 0.5;
 };
 
-#endif  // WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
+#endif  //WANDERBOT_CONFIG_HPP

@@ -18,20 +18,15 @@ Action StateHandlerGo::act(
   const double seconds_in_this_state,
   const Vector & vector_to_obstacle) const
 {
-  // TODO centralize tunable parameters like this:
-  constexpr static double DIST_TOO_NEAR = 1.5;
-
-  if (vector_to_obstacle.getMagnitude() < DIST_TOO_NEAR) {
+  if (vector_to_obstacle.getMagnitude() < Config::OBSTACLE_MINIMUM_SAFE_DISTANCE) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }
   auto new_motion_vector_by_magnitude_angle = vff_calculator.getVffResult(vector_to_obstacle);
   if (abs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0l)) {
     return Action(Velocity::create_reverse(), State::BLOCKED);
   }
-  // TODO centralize tuning parameters like these:
-  const double SPEED_FACTOR = 0.5l;
   auto new_velocity = Velocity(
-    new_motion_vector_by_magnitude_angle.getMagnitude() * SPEED_FACTOR,
+    new_motion_vector_by_magnitude_angle.getMagnitude() * Config::THROTTLE_SETTING,
     new_motion_vector_by_magnitude_angle.getAngleRadians());
   return Action(new_velocity, State::GO);
 }
