@@ -21,7 +21,7 @@ Vector Vector::createUsingStandardPosition(double x, double y)
   double angleRadians = atan2(y, x);
   return Vector(magnitude, angleRadians);
 }
-Vector Vector::createUsingMagnituredAngle(double magnitude, double angle_radians)
+Vector Vector::createUsingMagnitudeAngle(double magnitude, double angle_radians)
 {
   return Vector(magnitude, angle_radians);
 }

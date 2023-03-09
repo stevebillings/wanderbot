@@ -31,7 +31,9 @@ TEST(LaserCharacteristicsTest, CharacteristicsTest)
   LaserCharacteristics laser_characteristics = laserAnalyzer.determineCharacteristics(
     TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
   EXPECT_NEAR(laser_characteristics.getAngleMin(), TestConstants::LASER_ANGLE_MINIMUM, 0.001);
-  EXPECT_NEAR(laser_characteristics.getAngleIncrement(), TestConstants::LASER_ANGLE_INCREMENT, 0.001);
+  EXPECT_NEAR(
+    laser_characteristics.getAngleIncrement(),
+    TestConstants::LASER_ANGLE_INCREMENT, 0.001);
   EXPECT_EQ(laser_characteristics.getLeftmostIndex(), 4ul);
   EXPECT_EQ(laser_characteristics.getStraightIndex(), 2ul);
 }

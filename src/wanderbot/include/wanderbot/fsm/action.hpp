@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__ACTION_HPP_
-#define WANDERBOT__ACTION_HPP_
+#ifndef WANDERBOT__FSM__ACTION_HPP_
+#define WANDERBOT__FSM__ACTION_HPP_
 
 #include <optional>
 
@@ -35,4 +35,4 @@ private:
   State state_;
 };
 
-#endif  // WANDERBOT__ACTION_HPP_
+#endif  // WANDERBOT__FSM__ACTION_HPP_

@@ -15,10 +15,10 @@
 #ifndef WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
 #define WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
 
-#include "wanderbot/config/config.hpp"
 #include <algorithm>
 #include <cmath>
 #include <vector>
+#include "wanderbot/config/config.hpp"
 
 #include "wanderbot/linearalgebra/vector.hpp"
 

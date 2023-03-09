@@ -24,7 +24,7 @@ TEST(StateHandlerBlockedTest, Name)
 
 TEST(StateHandlerBlockedTest, RecentlyBlocked)
 {
-  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(4.0l, 0.0l);
+  auto vector_to_obstacle = Vector::createUsingMagnitudeAngle(4.0l, 0.0l);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
   Action action = state_handler.act(0.01l, vector_to_obstacle);
@@ -36,7 +36,7 @@ TEST(StateHandlerBlockedTest, RecentlyBlocked)
 
 TEST(StateHandlerBlockedTest, BlockedForAWhile)
 {
-  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(4.0l, 0.0l);
+  auto vector_to_obstacle = Vector::createUsingMagnitudeAngle(4.0l, 0.0l);
   StateHandlerBlocked state_handler = StateHandlerBlocked();
 
   Action action = state_handler.act(5.0l, vector_to_obstacle);

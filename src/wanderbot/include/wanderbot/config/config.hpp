@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT_CONFIG_HPP
-#define WANDERBOT_CONFIG_HPP
+#ifndef WANDERBOT__CONFIG__CONFIG_HPP_
+#define WANDERBOT__CONFIG__CONFIG_HPP_
 
 class Config
 {
@@ -23,4 +23,4 @@ public:
   static constexpr double THROTTLE_SETTING = 0.5;
 };
 
-#endif  //WANDERBOT_CONFIG_HPP
+#endif  // WANDERBOT__CONFIG__CONFIG_HPP_

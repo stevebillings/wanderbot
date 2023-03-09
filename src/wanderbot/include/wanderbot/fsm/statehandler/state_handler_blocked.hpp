@@ -24,7 +24,7 @@ public:
     const double seconds_in_this_state,
     const Vector & vector_to_obstacle) const override;
   const char * getName() const override;
-  const State getState() const override;
+  State getState() const override;
 };
 
 #endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_BLOCKED_HPP_

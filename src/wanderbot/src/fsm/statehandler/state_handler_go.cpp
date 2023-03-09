@@ -15,7 +15,7 @@
 #include "wanderbot/fsm/statehandler/state_handler_go.hpp"
 
 Action StateHandlerGo::act(
-  const double seconds_in_this_state,
+  __attribute__((unused)) const double seconds_in_this_state,
   const Vector & vector_to_obstacle) const
 {
   if (vector_to_obstacle.getMagnitude() < Config::OBSTACLE_MINIMUM_SAFE_DISTANCE) {
@@ -36,7 +36,7 @@ const char * StateHandlerGo::getName() const
   return "Go";
 }
 
-const State StateHandlerGo::getState() const
+State StateHandlerGo::getState() const
 {
   return State::GO;
 }

@@ -16,7 +16,7 @@
 
 Action StateHandlerChangeDirection::act(
   const double seconds_in_this_state,
-  const Vector & vector_to_obstacle) const
+  __attribute__((unused)) const Vector & vector_to_obstacle) const
 {
   if (seconds_in_this_state > 0.75) {
     return Action(Velocity::create_stopped(), State::GO);
@@ -29,7 +29,7 @@ const char * StateHandlerChangeDirection::getName() const
   return "Change direction";
 }
 
-const State StateHandlerChangeDirection::getState() const
+State StateHandlerChangeDirection::getState() const
 {
   return State::CHANGE_DIRECTION;
 }

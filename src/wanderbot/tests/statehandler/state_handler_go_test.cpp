@@ -18,7 +18,7 @@
 
 TEST(StateHandlerGoTest, StraightAhead)
 {
-  Vector vector_to_obstacle = Vector::createUsingMagnituredAngle(5.0l, 0.0l);
+  Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(5.0l, 0.0l);
   StateHandlerGo state_handler = StateHandlerGo();
 
   Action action = state_handler.act(10.0l, vector_to_obstacle);
@@ -32,7 +32,7 @@ TEST(StateHandlerGoTest, StraightAhead)
 
 TEST(StateHandlerGoTest, Blocked)
 {
-  Vector vector_to_obstacle = Vector::createUsingMagnituredAngle(0.5l, 0.0l);
+  Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(0.5l, 0.0l);
   StateHandlerGo state_handler = StateHandlerGo();
 
   Action action = state_handler.act(10.0l, vector_to_obstacle);
@@ -46,7 +46,7 @@ TEST(StateHandlerGoTest, Blocked)
 
 TEST(StateHandlerGoTest, AheadRight)
 {
-  Vector vector_to_obstacle = Vector::createUsingMagnituredAngle(2.0l, -1 * M_PI / 4.0);
+  Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
   StateHandlerGo state_handler = StateHandlerGo();
 
   Action action = state_handler.act(10.0l, vector_to_obstacle);

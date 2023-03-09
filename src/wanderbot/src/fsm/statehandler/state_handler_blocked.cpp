@@ -16,7 +16,7 @@
 
 Action StateHandlerBlocked::act(
   const double seconds_in_this_state,
-  const Vector & vector_to_obstacle) const
+  __attribute__((unused)) const Vector & vector_to_obstacle) const
 {
   if (seconds_in_this_state > 1.0) {
     return Action(Velocity::create_spin_left(), State::CHANGE_DIRECTION);
@@ -24,12 +24,12 @@ Action StateHandlerBlocked::act(
   return Action(State::BLOCKED);
 }
 
-const char * StateHandlerBlocked::getName() const \
+const char * StateHandlerBlocked::getName() const
 {
   return "Blocked";
 }
 
-const State StateHandlerBlocked::getState() const
+State StateHandlerBlocked::getState() const
 {
   return State::BLOCKED;
 }

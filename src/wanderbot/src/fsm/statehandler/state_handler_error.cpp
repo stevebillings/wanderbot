@@ -15,8 +15,8 @@
 #include "wanderbot/fsm/statehandler/state_handler_error.hpp"
 
 Action StateHandlerError::act(
-  const double seconds_in_this_state,
-  const Vector & vector_to_obstacle) const
+  __attribute__((unused)) const double seconds_in_this_state,
+  __attribute__((unused)) const Vector & vector_to_obstacle) const
 {
   return Action(Velocity::create_stopped(), State::ERROR);
 }
@@ -26,7 +26,7 @@ const char * StateHandlerError::getName() const
   return "Error";
 }
 
-const State StateHandlerError::getState() const
+State StateHandlerError::getState() const
 {
   return State::BLOCKED;
 }

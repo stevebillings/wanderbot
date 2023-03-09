@@ -26,7 +26,7 @@ class StateHandler
 {
 public:
   virtual const char * getName() const = 0;
-  virtual const State getState() const = 0;
+  virtual State getState() const = 0;
   virtual Action act(
     const double seconds_in_this_state,
     const Vector & vector_to_obstacle) const = 0;

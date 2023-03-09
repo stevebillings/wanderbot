@@ -12,8 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__VECTOR__VECTOR_HPP_
-#define WANDERBOT__VECTOR__VECTOR_HPP_
+#ifndef WANDERBOT__LINEARALGEBRA__VECTOR_HPP_
+#define WANDERBOT__LINEARALGEBRA__VECTOR_HPP_
 
 #include <cmath>
 #include <string>
@@ -22,7 +22,7 @@ class Vector
 {
 public:
   static Vector createUsingStandardPosition(double x, double y);
-  static Vector createUsingMagnituredAngle(double magnitude, double angle_radians);
+  static Vector createUsingMagnitudeAngle(double magnitude, double angle_radians);
   double getMagnitude() const;
   double getAngleRadians() const;
   double getStandardPositionX() const;
@@ -38,4 +38,4 @@ private:
   double angle_radians_;
 };
 
-#endif  // WANDERBOT__VECTOR__VECTOR_HPP_
+#endif  // WANDERBOT__LINEARALGEBRA__VECTOR_HPP_

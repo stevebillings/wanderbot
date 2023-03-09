@@ -41,5 +41,5 @@ Vector LaserAnalyzer::analyze(
   int32_t obstacle_index_rel_to_straight =
     obstacle_index - (laserCharacteristics.getLeftmostIndex() / 2 - 1);
   double obstacle_angle = laserCharacteristics.getAngleIncrement() * obstacle_index_rel_to_straight;
-  return Vector::createUsingMagnituredAngle(obstacle_distance, obstacle_angle);
+  return Vector::createUsingMagnitudeAngle(obstacle_distance, obstacle_angle);
 }

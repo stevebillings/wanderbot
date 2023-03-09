@@ -19,7 +19,7 @@
 TEST(VectorForceField, Far)
 {
   auto vff = VectorForceFieldCalculator();
-  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(10.0l, 0.0l);
+  auto vector_to_obstacle = Vector::createUsingMagnitudeAngle(10.0l, 0.0l);
   Vector result = vff.getVffResult(vector_to_obstacle);
 
   ASSERT_TRUE(result.getMagnitude() > 2.0l);
@@ -29,7 +29,7 @@ TEST(VectorForceField, Far)
 TEST(VectorForceField, AheadClose)
 {
   auto vff = VectorForceFieldCalculator();
-  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(3.0l, 0.0l);
+  auto vector_to_obstacle = Vector::createUsingMagnitudeAngle(3.0l, 0.0l);
   Vector result = vff.getVffResult(vector_to_obstacle);
 
   ASSERT_NEAR(result.getMagnitude(), 0.1, 0.1);
@@ -38,7 +38,7 @@ TEST(VectorForceField, AheadClose)
 TEST(VectorForceField, LeftVeryClose)
 {
   auto vff = VectorForceFieldCalculator();
-  auto vector_to_obstacle = Vector::createUsingMagnituredAngle(0.1l, M_PI / 4.0);
+  auto vector_to_obstacle = Vector::createUsingMagnitudeAngle(0.1l, M_PI / 4.0);
   Vector result = vff.getVffResult(vector_to_obstacle);
 
   // Obstacle should be pushing us back and to the right
