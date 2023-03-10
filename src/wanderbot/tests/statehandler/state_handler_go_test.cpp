@@ -37,11 +37,11 @@ TEST(StateHandlerGoTest, Blocked)
 
   Action action = state_handler.act(10.0l, vector_to_obstacle);
 
-  EXPECT_EQ(action.get_state(), State::BLOCKED);
+  EXPECT_EQ(action.get_state(), State::BACK_UP);
   // Ensure the values are reasonable without being overly sensitive to magnitude
   EXPECT_TRUE(action.get_velocity().has_value());
-  EXPECT_TRUE(action.get_velocity().value().get_forward() < 0.0l);
-  EXPECT_NEAR(action.get_velocity().value().get_yaw(), 0.0, 0.01l);
+  EXPECT_NEAR(action.get_velocity().value().get_forward(), 0.0, 0.0);
+  EXPECT_NEAR(action.get_velocity().value().get_yaw(), 0.0, 0.01);
 }
 
 TEST(StateHandlerGoTest, AheadRight)

@@ -36,7 +36,7 @@ add_executable(wanderbot
         include/wanderbot/fsm/state.hpp
         src/fsm/statehandler/state_handler_go.cpp include/wanderbot/fsm/statehandler/state_handler_go.hpp
         src/fsm/statehandler/state_handler_change_direction.cpp include/wanderbot/fsm/statehandler/state_handler_change_direction.hpp
-        src/fsm/statehandler/state_handler_blocked.cpp include/wanderbot/fsm/statehandler/state_handler_blocked.hpp
+        src/fsm/statehandler/state_handler_back_up.cpp include/wanderbot/fsm/statehandler/state_handler_back_up.hpp
         src/fsm/statehandler/state_handler_error.cpp include/wanderbot/fsm/statehandler/state_handler_error.hpp
         src/velocity/vff/vector_force_field_calculator.cpp include/wanderbot/velocity/vff/vector_force_field_calculator.hpp
         src/velocity/velocity.cpp include/wanderbot/velocity/velocity.hpp

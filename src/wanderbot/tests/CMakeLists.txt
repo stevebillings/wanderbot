@@ -38,7 +38,7 @@ ament_add_gtest(state_handler_go_test
 
 ament_add_gtest(state_handler_blocked_test
         statehandler/state_handler_blocked_test.cpp
-        ../src/fsm/statehandler/state_handler_blocked.cpp ../include/wanderbot/fsm/statehandler/state_handler_blocked.hpp
+        ../src/fsm/statehandler/state_handler_back_up.cpp ../include/wanderbot/fsm/statehandler/state_handler_back_up.hpp
         ../include/wanderbot/laser/laser_characteristics.hpp ../src/laser/laser_characteristics.cpp
         ../include/wanderbot/velocity/velocity.hpp ../src/velocity/velocity.cpp
         ../src/fsm/action.cpp ../include/wanderbot/fsm/action.hpp

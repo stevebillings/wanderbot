@@ -21,6 +21,8 @@ public:
   static constexpr double VFF_MINIMUM_IGNORABLE_DISTANCE = 6.0;
   static constexpr double OBSTACLE_MINIMUM_SAFE_DISTANCE = 1.5;
   static constexpr double THROTTLE_SETTING = 0.5;
+  static constexpr double BACK_UP_SECONDS = 1.0;
+  static constexpr double SPIN_SECONDS = 0.75;
 };
 
 #endif  // WANDERBOT__CONFIG__CONFIG_HPP_

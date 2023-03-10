@@ -12,24 +12,19 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "wanderbot/fsm/statehandler/state_handler_blocked.hpp"
+#ifndef WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_BACK_UP_HPP_
+#define WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_BACK_UP_HPP_
 
-Action StateHandlerBlocked::act(
-  const double seconds_in_this_state,
-  __attribute__((unused)) const Vector & vector_to_obstacle) const
-{
-  if (seconds_in_this_state > 1.0) {
-    return Action(Velocity::create_spin_left(), State::CHANGE_DIRECTION);
-  }
-  return Action(State::BLOCKED);
-}
+#include "state_handler.hpp"
 
-const char * StateHandlerBlocked::getName() const
+class StateHandlerBackUp : public StateHandler
 {
-  return "Blocked";
-}
+public:
+  Action act(
+    const double seconds_in_this_state,
+    const Vector & vector_to_obstacle) const override;
+  const char * getName() const override;
+  State getState() const override;
+};
 
-State StateHandlerBlocked::getState() const
-{
-  return State::BLOCKED;
-}
+#endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_BACK_UP_HPP_

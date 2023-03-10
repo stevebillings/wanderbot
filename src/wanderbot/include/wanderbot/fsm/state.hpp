@@ -15,6 +15,6 @@
 #ifndef WANDERBOT__FSM__STATE_HPP_
 #define WANDERBOT__FSM__STATE_HPP_
 
-enum class State { GO, BLOCKED, CHANGE_DIRECTION, ERROR };
+enum class State { GO, BACK_UP, CHANGE_DIRECTION, ERROR };
 
 #endif  // WANDERBOT__FSM__STATE_HPP_

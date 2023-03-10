@@ -19,11 +19,11 @@ Action StateHandlerGo::act(
   const Vector & vector_to_obstacle) const
 {
   if (vector_to_obstacle.getMagnitude() < Config::OBSTACLE_MINIMUM_SAFE_DISTANCE) {
-    return Action(Velocity::create_reverse(), State::BLOCKED);
+    return Action(Velocity::create_stopped(), State::BACK_UP);
   }
   auto new_motion_vector_by_magnitude_angle = vff_calculator.getVffResult(vector_to_obstacle);
   if (abs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0l)) {
-    return Action(Velocity::create_reverse(), State::BLOCKED);
+    return Action(Velocity::create_stopped(), State::BACK_UP);
   }
   auto new_velocity = Velocity(
     new_motion_vector_by_magnitude_angle.getMagnitude() * Config::THROTTLE_SETTING,

@@ -15,6 +15,7 @@
 #ifndef WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_HPP_
 #define WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_HPP_
 
+#include "wanderbot/config/config.hpp"
 #include "wanderbot/fsm/action.hpp"
 #include "wanderbot/fsm/state.hpp"
 #include "wanderbot/laser/laser_characteristics.hpp"

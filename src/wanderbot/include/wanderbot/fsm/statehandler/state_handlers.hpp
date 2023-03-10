@@ -16,7 +16,7 @@
 #define WANDERBOT__FSM__STATEHANDLER__STATE_HANDLERS_HPP_
 
 #include "state_handler.hpp"
-#include "state_handler_blocked.hpp"
+#include "state_handler_back_up.hpp"
 #include "state_handler_change_direction.hpp"
 #include "state_handler_error.hpp"
 #include "state_handler_go.hpp"
@@ -32,7 +32,7 @@ public:
 private:
   StateHandler * state_handler_just_go_ = new StateHandlerGo();
   StateHandler * state_handler_change_direction_ = new StateHandlerChangeDirection();
-  StateHandler * state_handler_too_near_ = new StateHandlerBlocked();
+  StateHandler * state_handler_too_near_ = new StateHandlerBackUp();
   StateHandler * state_handler_error_ = new StateHandlerError();
 };
 

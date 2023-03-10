@@ -28,5 +28,5 @@ const char * StateHandlerError::getName() const
 
 State StateHandlerError::getState() const
 {
-  return State::BLOCKED;
+  return State::ERROR;
 }
