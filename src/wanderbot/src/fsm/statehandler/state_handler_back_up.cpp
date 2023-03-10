@@ -21,7 +21,7 @@ Action StateHandlerBackUp::act(
   if (seconds_in_this_state > Config::BACK_UP_SECONDS) {
     return Action(Velocity::create_stopped(), State::CHANGE_DIRECTION);
   }
-  return Action(Velocity::create_reverse(), State::BACK_UP);
+  return Action(Velocity(-1 * Config::BACK_UP_VELOCITY, 0.0), State::BACK_UP);
 }
 
 const char * StateHandlerBackUp::getName() const

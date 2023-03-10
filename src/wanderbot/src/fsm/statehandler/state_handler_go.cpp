@@ -26,8 +26,8 @@ Action StateHandlerGo::act(
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
   auto new_velocity = Velocity(
-    new_motion_vector_by_magnitude_angle.getMagnitude() * Config::THROTTLE_SETTING,
-    new_motion_vector_by_magnitude_angle.getAngleRadians());
+    new_motion_vector_by_magnitude_angle.getMagnitude() * Config::THROTTLE_SETTING_FORWARD,
+    new_motion_vector_by_magnitude_angle.getAngleRadians() * Config::THROTTLE_SETTING_YAW);
   return Action(new_velocity, State::GO);
 }
 

@@ -21,7 +21,7 @@ Action StateHandlerChangeDirection::act(
   if (seconds_in_this_state > Config::SPIN_SECONDS) {
     return Action(Velocity::create_stopped(), State::GO);
   }
-  return Action(Velocity::create_spin_left(), State::CHANGE_DIRECTION);
+  return Action(Velocity(0.0, Config::CHANGE_DIRECTION_SPIN_VELOCITY), State::CHANGE_DIRECTION);
 }
 
 const char * StateHandlerChangeDirection::getName() const

@@ -79,22 +79,21 @@ private:
 
   void set_velocity(const Velocity & velocity)
   {
-    double x = velocity.get_forward();
-    if (x > 5.0) {
-      x = 5.0;
-    } else if (x < -5.0) {
-      x = -5.0;
-    }
-    double yaw = velocity.get_yaw();
-    if (abs(yaw) > M_PI) {
-      RCLCPP_ERROR(logger_, "Invalid velocity yaw value: %lf", velocity.get_yaw());
-      cur_state_handler_ = state_handlers_.get_state_handler(State::ERROR);
-      return;
-    }
+    double x = limitToMax(velocity.get_forward(), Config::MAX_FORWARD_VELOCITY);
+    double yaw = limitToMax(velocity.get_yaw(), Config::MAX_YAW);
     geometry_msgs::msg::Twist drive_message;
     drive_message.linear.x = x;
     drive_message.angular.z = yaw;
     drive_publisher_->publish(drive_message);
+  }
+  double limitToMax(const double proposed_value, const double max_magnitude) const
+  {
+    if (proposed_value > max_magnitude) {
+      return max_magnitude;
+    } else if (proposed_value < (-1 * max_magnitude)) {
+      return -1 * max_magnitude;
+    }
+    return proposed_value;
   }
 
   rclcpp::TimerBase::SharedPtr timer_;
