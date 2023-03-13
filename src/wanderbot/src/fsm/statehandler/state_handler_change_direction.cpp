@@ -15,21 +15,15 @@
 #include "wanderbot/fsm/statehandler/state_handler_change_direction.hpp"
 
 Action StateHandlerChangeDirection::act(
-  const double seconds_in_this_state,
+  const Config & config, const double seconds_in_this_state,
   __attribute__((unused)) const Vector & vector_to_obstacle) const
 {
-  if (seconds_in_this_state > Config::SPIN_SECONDS) {
+  if (seconds_in_this_state > config.getSpinDurationSeconds()) {
     return Action(Velocity::create_stopped(), State::GO);
   }
-  return Action(Velocity(0.0, Config::CHANGE_DIRECTION_SPIN_VELOCITY), State::CHANGE_DIRECTION);
+  return Action(Velocity(0.0, config.getChangeDirectionSpinVelocity()), State::CHANGE_DIRECTION);
 }
 
-const char * StateHandlerChangeDirection::getName() const
-{
-  return "Change direction";
-}
+const char * StateHandlerChangeDirection::getName() const {return "Change direction";}
 
-State StateHandlerChangeDirection::getState() const
-{
-  return State::CHANGE_DIRECTION;
-}
+State StateHandlerChangeDirection::getState() const {return State::CHANGE_DIRECTION;}

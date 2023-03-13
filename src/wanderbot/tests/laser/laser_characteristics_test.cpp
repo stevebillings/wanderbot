@@ -15,8 +15,8 @@
 #include <gtest/gtest.h>
 
 #include "../test_constants.hpp"
-#include "wanderbot/laser/laser_analyzer.hpp"
 #include "rclcpp/rclcpp.hpp"
+#include "wanderbot/laser/laser_analyzer.hpp"
 
 TEST(LaserCharacteristicsTest, CharacteristicsTest)
 {
@@ -32,8 +32,7 @@ TEST(LaserCharacteristicsTest, CharacteristicsTest)
     TestConstants::LASER_ANGLE_MINIMUM, TestConstants::LASER_ANGLE_INCREMENT, laser_ranges);
   EXPECT_NEAR(laser_characteristics.getAngleMin(), TestConstants::LASER_ANGLE_MINIMUM, 0.001);
   EXPECT_NEAR(
-    laser_characteristics.getAngleIncrement(),
-    TestConstants::LASER_ANGLE_INCREMENT, 0.001);
+    laser_characteristics.getAngleIncrement(), TestConstants::LASER_ANGLE_INCREMENT, 0.001);
   EXPECT_EQ(laser_characteristics.getLeftmostIndex(), 4ul);
   EXPECT_EQ(laser_characteristics.getStraightIndex(), 2ul);
 }

@@ -46,7 +46,7 @@ add_executable(wanderbot
         include/wanderbot/fsm/statehandler/state_handler.hpp
         src/fsm/statehandler/state_handlers.cpp include/wanderbot/fsm/statehandler/state_handlers.hpp
         src/fsm/action.cpp include/wanderbot/fsm/action.hpp
-        include/wanderbot/config/config.hpp)
+        include/wanderbot/config/config.hpp src/config/config.cpp)
 
 set(dependencies
   rclcpp

@@ -30,14 +30,8 @@ double Vector::getMagnitude() const {return magnitude_;}
 
 double Vector::getAngleRadians() const {return angle_radians_;}
 
-double Vector::getStandardPositionX() const
-{
-  return magnitude_ * cos(angle_radians_);
-}
-double Vector::getStandardPositionY() const
-{
-  return magnitude_ * sin(angle_radians_);
-}
+double Vector::getStandardPositionX() const {return magnitude_ * cos(angle_radians_);}
+double Vector::getStandardPositionY() const {return magnitude_ * sin(angle_radians_);}
 
 std::string Vector::toString() const
 {

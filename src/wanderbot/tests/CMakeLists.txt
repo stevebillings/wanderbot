@@ -28,6 +28,7 @@ ament_add_gtest(laser_characteristics_test
 
 ament_add_gtest(state_handler_go_test
         statehandler/state_handler_go_test.cpp
+        ../include/wanderbot/config/config.hpp ../src/config/config.cpp
         ../src/fsm/statehandler/state_handler_go.cpp ../include/wanderbot/fsm/statehandler/state_handler_go.hpp
         ../include/wanderbot/laser/laser_characteristics.hpp ../src/laser/laser_characteristics.cpp
         ../include/wanderbot/velocity/velocity.hpp ../src/velocity/velocity.cpp
@@ -38,6 +39,7 @@ ament_add_gtest(state_handler_go_test
 
 ament_add_gtest(state_handler_blocked_test
         statehandler/state_handler_blocked_test.cpp
+        ../include/wanderbot/config/config.hpp ../src/config/config.cpp
         ../src/fsm/statehandler/state_handler_back_up.cpp ../include/wanderbot/fsm/statehandler/state_handler_back_up.hpp
         ../include/wanderbot/laser/laser_characteristics.hpp ../src/laser/laser_characteristics.cpp
         ../include/wanderbot/velocity/velocity.hpp ../src/velocity/velocity.cpp
@@ -47,6 +49,7 @@ ament_add_gtest(state_handler_blocked_test
 ament_add_gtest(vector_force_field_calculator_test
         velocity/vff/vector_force_field_calculator_test.cpp
         test_constants.hpp
+        ../include/wanderbot/config/config.hpp ../src/config/config.cpp
         ../include/wanderbot/velocity/vff/vector_force_field_calculator.hpp ../src/velocity/vff/vector_force_field_calculator.cpp
         ../include/wanderbot/linearalgebra/vector.hpp ../src/linearalgebra/vector.cpp)
 

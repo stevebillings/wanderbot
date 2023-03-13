@@ -15,18 +15,13 @@
 #include "wanderbot/fsm/statehandler/state_handler_error.hpp"
 
 Action StateHandlerError::act(
+  __attribute__((unused)) const Config & config,
   __attribute__((unused)) const double seconds_in_this_state,
   __attribute__((unused)) const Vector & vector_to_obstacle) const
 {
   return Action(Velocity::create_stopped(), State::ERROR);
 }
 
-const char * StateHandlerError::getName() const
-{
-  return "Error";
-}
+const char * StateHandlerError::getName() const {return "Error";}
 
-State StateHandlerError::getState() const
-{
-  return State::ERROR;
-}
+State StateHandlerError::getState() const {return State::ERROR;}

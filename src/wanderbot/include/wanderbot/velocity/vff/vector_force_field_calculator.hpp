@@ -18,15 +18,16 @@
 #include <algorithm>
 #include <cmath>
 #include <vector>
-#include "wanderbot/config/config.hpp"
 
+#include "wanderbot/config/config.hpp"
 #include "wanderbot/linearalgebra/vector.hpp"
 
 class VectorForceFieldCalculator
 {
 public:
-  Vector getVffResult(const Vector & vector_to_obstacle, const Vector & goal_vector) const;
-  Vector getVffResult(const Vector & vector_to_obstacle) const;
+  Vector getVffResult(
+    const Config & config, const Vector & vector_to_obstacle, const Vector & goal_vector) const;
+  Vector getVffResult(const Config & config, const Vector & vector_to_obstacle) const;
 };
 
 #endif  // WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_

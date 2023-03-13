@@ -18,10 +18,9 @@
 #include "wanderbot/config/config.hpp"
 #include "wanderbot/fsm/action.hpp"
 #include "wanderbot/fsm/state.hpp"
-#include "wanderbot/laser/laser_characteristics.hpp"
 #include "wanderbot/linearalgebra/vector.hpp"
 
-// the virtual class for State
+// the virtual class for state handlers
 // Each concrete state object implement the act() method for a specific state
 class StateHandler
 {
@@ -29,7 +28,7 @@ public:
   virtual const char * getName() const = 0;
   virtual State getState() const = 0;
   virtual Action act(
-    const double seconds_in_this_state,
+    const Config & config, const double seconds_in_this_state,
     const Vector & vector_to_obstacle) const = 0;
   virtual ~StateHandler() = default;
 };

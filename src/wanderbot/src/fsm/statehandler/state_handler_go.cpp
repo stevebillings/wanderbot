@@ -15,28 +15,23 @@
 #include "wanderbot/fsm/statehandler/state_handler_go.hpp"
 
 Action StateHandlerGo::act(
-  __attribute__((unused)) const double seconds_in_this_state,
+  const Config & config, __attribute__((unused)) const double seconds_in_this_state,
   const Vector & vector_to_obstacle) const
 {
-  if (vector_to_obstacle.getMagnitude() < Config::OBSTACLE_MINIMUM_SAFE_DISTANCE) {
+  if (vector_to_obstacle.getMagnitude() < config.getObstacleMinimumSafeDistance()) {
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
-  auto new_motion_vector_by_magnitude_angle = vff_calculator.getVffResult(vector_to_obstacle);
-  if (abs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0l)) {
+  auto new_motion_vector_by_magnitude_angle =
+    vff_calculator.getVffResult(config, vector_to_obstacle);
+  if (fabs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0L)) {
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
   auto new_velocity = Velocity(
-    new_motion_vector_by_magnitude_angle.getMagnitude() * Config::THROTTLE_SETTING_FORWARD,
-    new_motion_vector_by_magnitude_angle.getAngleRadians() * Config::THROTTLE_SETTING_YAW);
+    new_motion_vector_by_magnitude_angle.getMagnitude() * config.getThrottleSettingForward(),
+    new_motion_vector_by_magnitude_angle.getAngleRadians() * config.getThrottleSettingYaw());
   return Action(new_velocity, State::GO);
 }
 
-const char * StateHandlerGo::getName() const
-{
-  return "Go";
-}
+const char * StateHandlerGo::getName() const {return "Go";}
 
-State StateHandlerGo::getState() const
-{
-  return State::GO;
-}
+State StateHandlerGo::getState() const {return State::GO;}

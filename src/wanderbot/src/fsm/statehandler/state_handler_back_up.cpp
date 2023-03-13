@@ -15,21 +15,15 @@
 #include "wanderbot/fsm/statehandler/state_handler_back_up.hpp"
 
 Action StateHandlerBackUp::act(
-  const double seconds_in_this_state,
+  const Config & config, const double seconds_in_this_state,
   __attribute__((unused)) const Vector & vector_to_obstacle) const
 {
-  if (seconds_in_this_state > Config::BACK_UP_SECONDS) {
+  if (seconds_in_this_state > config.getBackUpDurationSeconds()) {
     return Action(Velocity::create_stopped(), State::CHANGE_DIRECTION);
   }
-  return Action(Velocity(-1 * Config::BACK_UP_VELOCITY, 0.0), State::BACK_UP);
+  return Action(Velocity(config.getBackUpVelocity(), 0.0), State::BACK_UP);
 }
 
-const char * StateHandlerBackUp::getName() const
-{
-  return "Back up";
-}
+const char * StateHandlerBackUp::getName() const {return "Back up";}
 
-State StateHandlerBackUp::getState() const
-{
-  return State::BACK_UP;
-}
+State StateHandlerBackUp::getState() const {return State::BACK_UP;}

@@ -21,7 +21,7 @@ TEST(StateHandlerGoTest, StraightAhead)
   Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(5.0l, 0.0l);
   StateHandlerGo state_handler = StateHandlerGo();
 
-  Action action = state_handler.act(10.0l, vector_to_obstacle);
+  Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::GO);
   // Ensure the values are reasonable without being overly sensitive to magnitude
@@ -35,7 +35,7 @@ TEST(StateHandlerGoTest, Blocked)
   Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(0.5l, 0.0l);
   StateHandlerGo state_handler = StateHandlerGo();
 
-  Action action = state_handler.act(10.0l, vector_to_obstacle);
+  Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::BACK_UP);
   // Ensure the values are reasonable without being overly sensitive to magnitude
@@ -49,7 +49,7 @@ TEST(StateHandlerGoTest, AheadRight)
   Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
   StateHandlerGo state_handler = StateHandlerGo();
 
-  Action action = state_handler.act(10.0l, vector_to_obstacle);
+  Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
 
   EXPECT_EQ(action.get_state(), State::GO);
   // Ensure the values are reasonable without being overly sensitive to magnitude

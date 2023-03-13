@@ -20,16 +20,28 @@
 class Config
 {
 public:
-  static constexpr double VFF_MINIMUM_IGNORABLE_DISTANCE = 6.0;
-  static constexpr double OBSTACLE_MINIMUM_SAFE_DISTANCE = 1.5;
-  static constexpr double THROTTLE_SETTING_FORWARD = 0.5;
-  static constexpr double THROTTLE_SETTING_YAW = 1.0;
-  static constexpr double MAX_FORWARD_VELOCITY = 5.0;
-  static constexpr double MAX_YAW = M_PI;
-  static constexpr double BACK_UP_VELOCITY = 1.0;
-  static constexpr double CHANGE_DIRECTION_SPIN_VELOCITY = 3.0;
-  static constexpr double BACK_UP_SECONDS = 1.0;
-  static constexpr double SPIN_SECONDS = 0.75;
+  double getVffMinimumIgnorableDistance() const;
+  double getObstacleMinimumSafeDistance() const;
+  double getThrottleSettingForward() const;
+  double getThrottleSettingYaw() const;
+  double getMaxForwardVelocity() const;
+  double getMaxYaw() const;
+  double getBackUpVelocity() const;
+  double getChangeDirectionSpinVelocity() const;
+  double getBackUpDurationSeconds() const;
+  double getSpinDurationSeconds() const;
+
+private:
+  static constexpr double VFF_MINIMUM_IGNORABLE_DISTANCE_ = 6.0;
+  static constexpr double OBSTACLE_MINIMUM_SAFE_DISTANCE_ = 1.5;
+  static constexpr double THROTTLE_SETTING_FORWARD_ = 0.5;
+  static constexpr double THROTTLE_SETTING_YAW_ = 1.0;
+  static constexpr double MAX_FORWARD_VELOCITY_ = 5.0;
+  static constexpr double MAX_YAW_ = M_PI;
+  static constexpr double BACK_UP_VELOCITY_ = -1.0;
+  static constexpr double CHANGE_DIRECTION_SPIN_VELOCITY_ = 3.0;
+  static constexpr double BACK_UP_SECONDS_ = 1.0;
+  static constexpr double SPIN_SECONDS_ = 0.75;
 };
 
 #endif  // WANDERBOT__CONFIG__CONFIG_HPP_

@@ -15,9 +15,8 @@
 #include <gtest/gtest.h>
 
 #include "../test_constants.hpp"
-#include "wanderbot/laser/laser_analyzer.hpp"
 #include "rclcpp/rclcpp.hpp"
-
+#include "wanderbot/laser/laser_analyzer.hpp"
 
 TEST(LaserAnalysisTest, AnalysisStraight)
 {

@@ -13,10 +13,10 @@
 // limitations under the License.
 
 #include "geometry_msgs/msg/twist.hpp"
-#include "wanderbot/fsm/statehandler/state_handlers.hpp"
-#include "wanderbot/laser/laser_analyzer.hpp"
 #include "rclcpp/rclcpp.hpp"
 #include "sensor_msgs/msg/laser_scan.hpp"
+#include "wanderbot/fsm/statehandler/state_handlers.hpp"
+#include "wanderbot/laser/laser_analyzer.hpp"
 
 using std::placeholders::_1;
 using namespace std::chrono_literals;
@@ -53,7 +53,7 @@ private:
       laser_analyzer_.analyze(*laser_characteristics_, last_laser_scan_msg_->ranges);
 
     Action action = cur_state_handler_->act(
-      current_time - time_entered_state_seconds_, vector_to_obstacle);
+      config_, current_time - time_entered_state_seconds_, vector_to_obstacle);
 
     if (action.get_state() != cur_state_handler_->getState()) {
       time_entered_state_seconds_ = current_time;
@@ -79,8 +79,8 @@ private:
 
   void set_velocity(const Velocity & velocity)
   {
-    double x = limitToMax(velocity.get_forward(), Config::MAX_FORWARD_VELOCITY);
-    double yaw = limitToMax(velocity.get_yaw(), Config::MAX_YAW);
+    double x = limitToMax(velocity.get_forward(), config_.getMaxForwardVelocity());
+    double yaw = limitToMax(velocity.get_yaw(), config_.getMaxYaw());
     geometry_msgs::msg::Twist drive_message;
     drive_message.linear.x = x;
     drive_message.angular.z = yaw;
@@ -106,6 +106,7 @@ private:
   LaserAnalyzer laser_analyzer_;
   double time_entered_state_seconds_ = 0.0l;
   rclcpp::Logger logger_ = get_logger();
+  Config config_ = Config();
 };
 
 int main(int argc, char * argv[])

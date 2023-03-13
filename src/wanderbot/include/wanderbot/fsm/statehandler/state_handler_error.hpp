@@ -20,7 +20,7 @@
 class StateHandlerError : public StateHandler
 {
   Action act(
-    const double seconds_in_this_state,
+    const Config & config, const double seconds_in_this_state,
     const Vector & vector_to_obstacle) const override;
   const char * getName() const override;
   State getState() const override;
