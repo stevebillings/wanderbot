@@ -29,7 +29,7 @@ public:
   State getState() const override;
 
 private:
-  const VectorForceFieldCalculator vff_calculator = VectorForceFieldCalculator();
+  const VectorForceFieldCalculator vff_calculator_ = VectorForceFieldCalculator();
 };
 
 #endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_GO_HPP_

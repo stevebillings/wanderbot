@@ -21,14 +21,14 @@ Action StateHandlerGo::act(
   if (vector_to_obstacle.getMagnitude() < config.getObstacleMinimumSafeDistance()) {
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
-  auto new_motion_vector_by_magnitude_angle =
-    vff_calculator.getVffResult(config, vector_to_obstacle);
-  if (fabs(new_motion_vector_by_magnitude_angle.getAngleRadians()) >= (M_PI / 2.0L)) {
+  auto new_motion_vector =
+    vff_calculator_.getVffResult(config, vector_to_obstacle);
+  if (fabs(new_motion_vector.getAngleRadians()) >= (M_PI / 2.0L)) {
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
   auto new_velocity = Velocity(
-    new_motion_vector_by_magnitude_angle.getMagnitude() * config.getThrottleSettingForward(),
-    new_motion_vector_by_magnitude_angle.getAngleRadians() * config.getThrottleSettingYaw());
+    new_motion_vector.getMagnitude() * config.getThrottleSettingForward(),
+    new_motion_vector.getAngleRadians() * config.getThrottleSettingYaw());
   return Action(new_velocity, State::GO);
 }
 

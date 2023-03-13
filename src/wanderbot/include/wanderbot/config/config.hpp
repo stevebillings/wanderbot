@@ -32,16 +32,16 @@ public:
   double getSpinDurationSeconds() const;
 
 private:
-  static constexpr double VFF_MINIMUM_IGNORABLE_DISTANCE_ = 6.0;
-  static constexpr double OBSTACLE_MINIMUM_SAFE_DISTANCE_ = 1.5;
-  static constexpr double THROTTLE_SETTING_FORWARD_ = 0.5;
-  static constexpr double THROTTLE_SETTING_YAW_ = 1.0;
-  static constexpr double MAX_FORWARD_VELOCITY_ = 5.0;
-  static constexpr double MAX_YAW_ = M_PI;
-  static constexpr double BACK_UP_VELOCITY_ = -1.0;
-  static constexpr double CHANGE_DIRECTION_SPIN_VELOCITY_ = 3.0;
-  static constexpr double BACK_UP_SECONDS_ = 1.0;
-  static constexpr double SPIN_SECONDS_ = 0.75;
+  static const double VFF_MINIMUM_IGNORABLE_DISTANCE_;
+  static const double OBSTACLE_MINIMUM_SAFE_DISTANCE_;
+  static const double THROTTLE_SETTING_FORWARD_;
+  static const double THROTTLE_SETTING_YAW_;
+  static const double MAX_FORWARD_VELOCITY_;
+  static const double MAX_YAW_;
+  static const double BACK_UP_VELOCITY_;
+  static const double CHANGE_DIRECTION_SPIN_VELOCITY_;
+  static const double BACK_UP_SECONDS_;
+  static const double SPIN_SECONDS_;
 };
 
 #endif  // WANDERBOT__CONFIG__CONFIG_HPP_
