@@ -12,20 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__VELOCITY__VELOCITY_HPP_
-#define WANDERBOT__VELOCITY__VELOCITY_HPP_
+#include "wanderbot/motion/velocity.hpp"
 
-class Velocity
+Velocity::Velocity(double forward, double yaw)
 {
-public:
-  Velocity(double forward, double yaw);
-  static Velocity create_stopped();
-  double get_forward() const;
-  double get_yaw() const;
+  forward_ = forward;
+  yaw_ = yaw;
+}
 
-private:
-  double forward_;
-  double yaw_;
-};
+Velocity Velocity::create_stopped() {return Velocity(0.0, 0.0);}
 
-#endif  // WANDERBOT__VELOCITY__VELOCITY_HPP_
+double Velocity::get_forward() const {return forward_;}
+
+double Velocity::get_yaw() const {return yaw_;}

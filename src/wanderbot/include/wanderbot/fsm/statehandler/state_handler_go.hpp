@@ -17,11 +17,13 @@
 
 #include "state_handler.hpp"
 #include "wanderbot/config/config.hpp"
-#include "wanderbot/velocity/vff/vector_force_field_calculator.hpp"
+#include "wanderbot/motion/obstacle_avoider.hpp"
 
 class StateHandlerGo : public StateHandler
 {
 public:
+  explicit StateHandlerGo(const ObstacleAvoider * obstacle_avoider)
+  : obstacle_avoider_(obstacle_avoider) {}
   Action act(
     const Config & config, const double seconds_in_this_state,
     const Vector & vector_to_obstacle) const override;
@@ -29,7 +31,7 @@ public:
   State getState() const override;
 
 private:
-  const VectorForceFieldCalculator vff_calculator_ = VectorForceFieldCalculator();
+  const ObstacleAvoider * obstacle_avoider_;
 };
 
 #endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLER_GO_HPP_

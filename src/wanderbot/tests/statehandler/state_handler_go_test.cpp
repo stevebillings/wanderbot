@@ -12,14 +12,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "wanderbot/fsm/statehandler/state_handler_go.hpp"
-
 #include <gtest/gtest.h>
+
+#include "wanderbot/fsm/statehandler/state_handler_go.hpp"
+#include "wanderbot/motion/vff/vector_force_field_calculator.hpp"
 
 TEST(StateHandlerGoTest, StraightAhead)
 {
   Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(5.0l, 0.0l);
-  StateHandlerGo state_handler = StateHandlerGo();
+  StateHandlerGo state_handler = StateHandlerGo(new VectorForceFieldCalculator());
 
   Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
 
@@ -33,7 +34,7 @@ TEST(StateHandlerGoTest, StraightAhead)
 TEST(StateHandlerGoTest, Blocked)
 {
   Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(0.5l, 0.0l);
-  StateHandlerGo state_handler = StateHandlerGo();
+  StateHandlerGo state_handler = StateHandlerGo(new VectorForceFieldCalculator());
 
   Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
 
@@ -47,7 +48,7 @@ TEST(StateHandlerGoTest, Blocked)
 TEST(StateHandlerGoTest, AheadRight)
 {
   Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
-  StateHandlerGo state_handler = StateHandlerGo();
+  StateHandlerGo state_handler = StateHandlerGo(new VectorForceFieldCalculator());
 
   Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
 

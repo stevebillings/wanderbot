@@ -12,22 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
-#define WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
+#ifndef WANDERBOT__MOTION__VELOCITY_HPP_
+#define WANDERBOT__MOTION__VELOCITY_HPP_
 
-#include <algorithm>
-#include <cmath>
-#include <vector>
-
-#include "wanderbot/config/config.hpp"
-#include "wanderbot/linearalgebra/vector.hpp"
-
-class VectorForceFieldCalculator
+class Velocity
 {
 public:
-  Vector getVffResult(
-    const Config & config, const Vector & vector_to_obstacle, const Vector & goal_vector) const;
-  Vector getVffResult(const Config & config, const Vector & vector_to_obstacle) const;
+  Velocity(double forward, double yaw);
+  static Velocity create_stopped();
+  double get_forward() const;
+  double get_yaw() const;
+
+private:
+  double forward_;
+  double yaw_;
 };
 
-#endif  // WANDERBOT__VELOCITY__VFF__VECTOR_FORCE_FIELD_CALCULATOR_HPP_
+#endif  // WANDERBOT__MOTION__VELOCITY_HPP_

@@ -20,6 +20,7 @@
 #include "state_handler_change_direction.hpp"
 #include "state_handler_error.hpp"
 #include "state_handler_go.hpp"
+#include "wanderbot/motion/vff/vector_force_field_calculator.hpp"
 
 // this class constructs and holds all state objects,
 // and has a method that returns the state object for a given
@@ -30,7 +31,7 @@ public:
   StateHandler * get_state_handler(State state) const;
 
 private:
-  StateHandler * state_handler_just_go_ = new StateHandlerGo();
+  StateHandler * state_handler_just_go_ = new StateHandlerGo(new VectorForceFieldCalculator());
   StateHandler * state_handler_change_direction_ = new StateHandlerChangeDirection();
   StateHandler * state_handler_too_near_ = new StateHandlerBackUp();
   StateHandler * state_handler_error_ = new StateHandlerError();

@@ -12,27 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT__FSM__ACTION_HPP_
-#define WANDERBOT__FSM__ACTION_HPP_
+#ifndef WANDERBOT__MOTION__OBSTACLE_AVOIDER_HPP_
+#define WANDERBOT__MOTION__OBSTACLE_AVOIDER_HPP_
 
-#include <optional>
+#include "wanderbot/config/config.hpp"
+#include "wanderbot/linearalgebra/vector.hpp"
 
-#include "state.hpp"
-#include "wanderbot/motion/velocity.hpp"
-
-class Action
+class ObstacleAvoider
 {
 public:
-  Action(const Velocity & velocity, const State state)
-  : velocity_(velocity), state_(state) {}
-  explicit Action(const State state)
-  : velocity_(std::nullopt), state_(state) {}
-  std::optional<Velocity> get_velocity() const;
-  State get_state() const;
-
-private:
-  std::optional<Velocity> velocity_;
-  State state_;
+  virtual Vector calculateNewMotionVector(
+    const Config & config, const Vector & vector_to_obstacle) const = 0;
+  virtual ~ObstacleAvoider() = default;
 };
 
-#endif  // WANDERBOT__FSM__ACTION_HPP_
+#endif  // WANDERBOT__MOTION__OBSTACLE_AVOIDER_HPP_

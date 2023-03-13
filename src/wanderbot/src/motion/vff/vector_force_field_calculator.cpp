@@ -12,18 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#include "wanderbot/velocity/vff/vector_force_field_calculator.hpp"
+#include "wanderbot/motion/vff/vector_force_field_calculator.hpp"
 
-Vector VectorForceFieldCalculator::getVffResult(
+Vector VectorForceFieldCalculator::calculateNewMotionVector(
   const Config & config, const Vector & vector_to_obstacle) const
 {
-  auto goal_vector = Vector::createUsingMagnitudeAngle(3.0, 0.0l);
-  return getVffResult(config, vector_to_obstacle, goal_vector);
-}
-
-Vector VectorForceFieldCalculator::getVffResult(
-  const Config & config, const Vector & vector_to_obstacle, const Vector & goal_vector) const
-{
+  auto goal_vector = Vector::createUsingMagnitudeAngle(3.0, 0.0L);
   double repulsive_vector_endpoint_x = 0.0L;
   double repulsive_vector_endpoint_y = 0.0L;
 

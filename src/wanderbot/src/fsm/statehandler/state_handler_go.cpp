@@ -21,8 +21,7 @@ Action StateHandlerGo::act(
   if (vector_to_obstacle.getMagnitude() < config.getObstacleMinimumSafeDistance()) {
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
-  auto new_motion_vector =
-    vff_calculator_.getVffResult(config, vector_to_obstacle);
+  auto new_motion_vector = obstacle_avoider_->calculateNewMotionVector(config, vector_to_obstacle);
   if (fabs(new_motion_vector.getAngleRadians()) >= (M_PI / 2.0L)) {
     return Action(Velocity::create_stopped(), State::BACK_UP);
   }
