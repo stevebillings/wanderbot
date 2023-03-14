@@ -1,10 +1,10 @@
 # WanderBot
 
-A robot built on Robotic Operationg System 2 ("ROS 2") that wanders around avoiding walls and obstacles.
+A robot built on Robot Operationg System 2 ("ROS 2") that wanders around avoiding walls and obstacles.
 
 ## Objective
 
-I used this project to experiment with design approaches for both the finite state machine, and the navigation algorithm (and work on my C++ skills).
+I used this project to experiment with design approaches for both the finite state machine, and the navigation algorithm (and to work on my C++ skills).
 
 ## Design
 
@@ -17,7 +17,7 @@ I started down the path of implementing the FSM with a switch statement, but end
 
 Having the FSM split into a set of unit testable classes made it easy to develop and debug each state handler in isolation (using unit tests) before running everything together in the simulator.
 
-While in the default ("Go") state, the robot navigates using VFF (see below). When it finds itself blocked (say, stuck in a corner), it briefly transitions to the "Blocked" state (during which it backs up), and then to the "Change direction" state (during which it rotates to a new direction to try), before returning to the "Go" state.
+While in the default ("Go") state, the robot navigates using VFF (see below). When it finds itself blocked (say, stuck in a corner), it briefly transitions to the "Back up" state (during which it backs up), and then to the "Change direction" state (during which it rotates to a new direction to try), before returning to the "Go" state.
 
 ### Navigation
 
@@ -36,11 +36,13 @@ The robot is simulated (I used gazebo). It provides lidar readings by publishing
 
 ## To build
 
-* colcon build --symlink-install
+Prerequisite: ROS 2 Humble Hawksbill.
+
+Build command: colcon build --symlink-install
 
 ## To run
 
-To run the robot in the Gazebo simulator on a gazebo world that emphasizes the behavior of the VFF navigation algorithm:
+To run the robot in the Gazebo simulator on a gazebo world that provides some challenges for the VFF navigation algorithm:
 
 * In one window: ./scripts/start.sh
 * In another window: source install/setup.bash && ros2 run wanderbot wanderbot
