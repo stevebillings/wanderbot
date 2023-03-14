@@ -21,7 +21,7 @@ While in the default ("Go") state, the robot navigates using VFF (see below). Wh
 
 ### Navigation
 
-The robot uses a Virtual Force Field (VFF) algorithm to navigate. The VFF algorithm enables it to navigate around most obstacles, but does not prevent it from getting stuck in corners.
+The robot uses a Virtual Force Field (VFF) algorithm to navigate. The VFF algorithm enables it to navigate around most obstacles, but does not prevent it from getting stuck in corners (the section above describes how it gets itself unstuck).
 
 ### ROS dependency
 
