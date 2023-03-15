@@ -21,18 +21,18 @@ While in the default ("Go") state, the robot navigates using VFF (see below). Wh
 
 ### Navigation
 
-The robot uses a Virtual Force Field (VFF) algorithm to navigate. The VFF algorithm enables it to navigate around most obstacles, but does not prevent it from getting stuck in corners (the section above describes how it gets itself unstuck).
+While in the "Go" state, the robot uses a Virtual Force Field (VFF) algorithm to navigate. The VFF algorithm enables it to navigate around obstacles, but does not prevent it from getting stuck in corners (the section above on the Finite State Machine describes how it gets itself unstuck from corners).
 
 ### ROS dependency
 
-The only source file with ROS (ROS 2) dependencies is the main module wanderbot_node.cpp. It is a ROS node that:
+The only source file with ROS dependencies is the main module wanderbot_node.cpp (WanderBotNode class). WanderBotNode is a ROS node that:
 
 * Subscribes / listens to LaserScan messages for Lidar input data.
 * Publishes Twist messages to move the robot.
 
 ## The robot
 
-The robot is simulated (I used gazebo). It provides lidar readings by publishing sensor_msgs::msg::LaserScan messages, and accepts motion control commands by listening for geometry_msgs::msg::Twist messages.
+The robot (so far, at least) is simulated (I used gazebo). It provides lidar readings by publishing sensor_msgs::msg::LaserScan messages, and accepts motion control commands by listening for geometry_msgs::msg::Twist messages.
 
 ## To build
 
