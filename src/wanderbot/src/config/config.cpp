@@ -27,7 +27,7 @@ double Config::getSpinDurationSeconds() const {return SPIN_SECONDS_;}
 
 const double Config::VFF_MINIMUM_IGNORABLE_DISTANCE_ = 6.0;
 const double Config::OBSTACLE_MINIMUM_SAFE_DISTANCE_ = 1.5;
-const double Config::THROTTLE_SETTING_FORWARD_ = 0.5;
+const double Config::THROTTLE_SETTING_FORWARD_ = 0.55;
 const double Config::THROTTLE_SETTING_YAW_ = 1.0;
 const double Config::MAX_FORWARD_VELOCITY_ = 5.0;
 const double Config::MAX_YAW_ = M_PI;
