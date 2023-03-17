@@ -14,6 +14,15 @@
 
 #include "wanderbot/fsm/statehandler/state_handlers.hpp"
 
+StateHandlers::StateHandlers() 
+{
+  obstacle_avoider_ = new VectorForceFieldCalculator();
+  state_handler_just_go_ = new StateHandlerGo(obstacle_avoider_);
+  state_handler_change_direction_ = new StateHandlerChangeDirection();
+  state_handler_too_near_ = new StateHandlerBackUp();
+  state_handler_error_ = new StateHandlerError();
+}
+
 StateHandler * StateHandlers::get_state_handler(State state) const
 {
   switch (state) {
@@ -26,4 +35,13 @@ StateHandler * StateHandlers::get_state_handler(State state) const
     default:
       return state_handler_error_;
   }
+}
+
+StateHandlers::~StateHandlers() 
+{
+  delete state_handler_just_go_;
+  delete state_handler_change_direction_;
+  delete state_handler_too_near_;
+  delete state_handler_error_;
+  delete obstacle_avoider_;
 }

@@ -22,19 +22,23 @@
 #include "state_handler_go.hpp"
 #include "wanderbot/motion/vff/vector_force_field_calculator.hpp"
 
-// this class constructs and holds all state objects,
+// This class constructs and holds all state objects,
 // and has a method that returns the state object for a given
-// fsm_state enum value (state objects must be stateless)
+// fsm_state enum value (state objects must be stateless).
+// State handler objects 
 class StateHandlers
 {
 public:
   StateHandler * get_state_handler(State state) const;
+  StateHandlers();
+  ~StateHandlers();
 
 private:
-  StateHandler * state_handler_just_go_ = new StateHandlerGo(new VectorForceFieldCalculator());
-  StateHandler * state_handler_change_direction_ = new StateHandlerChangeDirection();
-  StateHandler * state_handler_too_near_ = new StateHandlerBackUp();
-  StateHandler * state_handler_error_ = new StateHandlerError();
+  ObstacleAvoider * obstacle_avoider_;
+  StateHandler * state_handler_just_go_;
+  StateHandler * state_handler_change_direction_;
+  StateHandler * state_handler_too_near_;
+  StateHandler * state_handler_error_;
 };
 
 #endif  // WANDERBOT__FSM__STATEHANDLER__STATE_HANDLERS_HPP_
