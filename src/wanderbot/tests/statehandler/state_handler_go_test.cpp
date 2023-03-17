@@ -12,9 +12,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include "wanderbot/fsm/statehandler/state_handler_go.hpp"
+
 #include <gtest/gtest.h>
 
-#include "wanderbot/fsm/statehandler/state_handler_go.hpp"
+#include "mock/mock_obstacle_avoider.hpp"
 #include "wanderbot/motion/vff/vector_force_field_calculator.hpp"
 
 TEST(StateHandlerGoTest, StraightAhead)
@@ -58,6 +60,26 @@ TEST(StateHandlerGoTest, AheadRight)
   EXPECT_TRUE(action.get_velocity().value().get_forward() > 0.5l);
   EXPECT_TRUE(action.get_velocity().value().get_forward() < 8.0l);
   EXPECT_TRUE(action.get_velocity().value().get_yaw() > 0.2l);
+}
+
+TEST(StateHandlerGoTest, InvalidAngleLeft)
+{
+  Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
+  StateHandlerGo state_handler = StateHandlerGo(new MockObstacleAvoider(M_PI));
+
+  Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
+
+  EXPECT_EQ(action.get_state(), State::BACK_UP);
+}
+
+TEST(StateHandlerGoTest, InvalidAngleRight)
+{
+  Vector vector_to_obstacle = Vector::createUsingMagnitudeAngle(2.0l, -1 * M_PI / 4.0);
+  StateHandlerGo state_handler = StateHandlerGo(new MockObstacleAvoider(-1.0 * M_PI));
+
+  Action action = state_handler.act(Config(), 10.0l, vector_to_obstacle);
+
+  EXPECT_EQ(action.get_state(), State::BACK_UP);
 }
 
 int main(int argc, char ** argv)
