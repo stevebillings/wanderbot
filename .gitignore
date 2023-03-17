@@ -6,3 +6,4 @@ __pycache__/
 .cmake/
 cmake-build-debug/
 cmake-build-lidar_monitor/
+.vscode/
