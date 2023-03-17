@@ -12,19 +12,21 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#ifndef WANDERBOT_MOCK_OBSTACLE_AVOIDER_ACUTE_LEFT_HPP
-#define WANDERBOT_MOCK_OBSTACLE_AVOIDER_ACUTE_LEFT_HPP
+#ifndef WANDERBOT__TESTS__STATEHANDLER__MOCK__MOCK_OBSTACLE_AVOIDER_HPP_
+#define WANDERBOT__TESTS__STATEHANDLER__MOCK__MOCK_OBSTACLE_AVOIDER_HPP_
 
 #include "wanderbot/motion/obstacle_avoider.hpp"
 
 // This mock returns an acute left angle to see how the go state handler deals with it
-class MockObstacleAvoiderAcuteLeft : public ObstacleAvoider {
+class MockObstacleAvoider : public ObstacleAvoider
+{
 public:
-  MockObstacleAvoiderAcuteLeft(const double angle_to_return) : angle_to_return_(angle_to_return) {};
+  explicit MockObstacleAvoider(const double angle_to_return)
+  : angle_to_return_(angle_to_return) {}
   Vector calculateNewMotionVector(
     const Config & config, const Vector & vector_to_obstacle) const;
 
 private:
   const double angle_to_return_;
 };
-#endif  //WANDERBOT_MOCK_OBSTACLE_AVOIDER_ACUTE_LEFT_HPP
+#endif  // WANDERBOT__TESTS__STATEHANDLER__MOCK__MOCK_OBSTACLE_AVOIDER_HPP_

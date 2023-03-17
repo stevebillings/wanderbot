@@ -35,7 +35,8 @@ ament_add_gtest(state_handler_go_test
         ../include/wanderbot/motion/vff/vector_force_field_calculator.hpp ../src/motion/vff/vector_force_field_calculator.cpp
         ../include/wanderbot/linearalgebra/vector.hpp ../src/linearalgebra/vector.cpp
         ../src/fsm/action.cpp ../include/wanderbot/fsm/action.hpp
-        ../include/wanderbot/linearalgebra/vector.hpp ../src/linearalgebra/vector.cpp)
+        ../include/wanderbot/linearalgebra/vector.hpp ../src/linearalgebra/vector.cpp
+        statehandler/mock/mock_obstacle_avoider.cpp)
 
 ament_add_gtest(state_handler_blocked_test
         statehandler/state_handler_blocked_test.cpp
