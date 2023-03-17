@@ -25,7 +25,6 @@
 // This class constructs and holds all state objects,
 // and has a method that returns the state object for a given
 // fsm_state enum value (state objects must be stateless).
-// State handler objects 
 class StateHandlers
 {
 public:

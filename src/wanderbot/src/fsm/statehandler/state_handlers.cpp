@@ -14,7 +14,7 @@
 
 #include "wanderbot/fsm/statehandler/state_handlers.hpp"
 
-StateHandlers::StateHandlers() 
+StateHandlers::StateHandlers()
 {
   obstacle_avoider_ = new VectorForceFieldCalculator();
   state_handler_just_go_ = new StateHandlerGo(obstacle_avoider_);
@@ -37,7 +37,7 @@ StateHandler * StateHandlers::get_state_handler(State state) const
   }
 }
 
-StateHandlers::~StateHandlers() 
+StateHandlers::~StateHandlers()
 {
   delete state_handler_just_go_;
   delete state_handler_change_direction_;
